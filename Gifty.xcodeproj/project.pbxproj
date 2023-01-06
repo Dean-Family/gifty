@@ -1,0 +1,638 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2B67E1482967E51F004392B0 /* GiftyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B67E1472967E51F004392B0 /* GiftyApp.swift */; };
+		2B67E14A2967E51F004392B0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B67E1492967E51F004392B0 /* Persistence.swift */; };
+		2B67E14D2967E51F004392B0 /* Gifty.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B67E14B2967E51F004392B0 /* Gifty.xcdatamodeld */; };
+		2B67E14F2967E51F004392B0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B67E14E2967E51F004392B0 /* ContentView.swift */; };
+		2B67E1512967E521004392B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B67E1502967E521004392B0 /* Assets.xcassets */; };
+		2B67E1552967E521004392B0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B67E1542967E521004392B0 /* Preview Assets.xcassets */; };
+		2B67E15F2967E522004392B0 /* GiftyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B67E15E2967E522004392B0 /* GiftyTests.swift */; };
+		2B67E1692967E522004392B0 /* GiftyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B67E1682967E522004392B0 /* GiftyUITests.swift */; };
+		2B67E16B2967E522004392B0 /* GiftyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B67E16A2967E522004392B0 /* GiftyUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2B67E15B2967E522004392B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2B67E13C2967E51F004392B0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2B67E1432967E51F004392B0;
+			remoteInfo = Gifty;
+		};
+		2B67E1652967E522004392B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2B67E13C2967E51F004392B0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2B67E1432967E51F004392B0;
+			remoteInfo = Gifty;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2B67E1442967E51F004392B0 /* Gifty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gifty.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B67E1472967E51F004392B0 /* GiftyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftyApp.swift; sourceTree = "<group>"; };
+		2B67E1492967E51F004392B0 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		2B67E14C2967E51F004392B0 /* Gifty.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Gifty.xcdatamodel; sourceTree = "<group>"; };
+		2B67E14E2967E51F004392B0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2B67E1502967E521004392B0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2B67E1522967E521004392B0 /* Gifty.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Gifty.entitlements; sourceTree = "<group>"; };
+		2B67E1542967E521004392B0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		2B67E15A2967E522004392B0 /* GiftyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiftyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B67E15E2967E522004392B0 /* GiftyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftyTests.swift; sourceTree = "<group>"; };
+		2B67E1642967E522004392B0 /* GiftyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiftyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B67E1682967E522004392B0 /* GiftyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftyUITests.swift; sourceTree = "<group>"; };
+		2B67E16A2967E522004392B0 /* GiftyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftyUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2B67E1412967E51F004392B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B67E1572967E522004392B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B67E1612967E522004392B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2B67E13B2967E51F004392B0 = {
+			isa = PBXGroup;
+			children = (
+				2B67E1462967E51F004392B0 /* Gifty */,
+				2B67E15D2967E522004392B0 /* GiftyTests */,
+				2B67E1672967E522004392B0 /* GiftyUITests */,
+				2B67E1452967E51F004392B0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2B67E1452967E51F004392B0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2B67E1442967E51F004392B0 /* Gifty.app */,
+				2B67E15A2967E522004392B0 /* GiftyTests.xctest */,
+				2B67E1642967E522004392B0 /* GiftyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2B67E1462967E51F004392B0 /* Gifty */ = {
+			isa = PBXGroup;
+			children = (
+				2B67E1472967E51F004392B0 /* GiftyApp.swift */,
+				2B67E1492967E51F004392B0 /* Persistence.swift */,
+				2B67E14E2967E51F004392B0 /* ContentView.swift */,
+				2B67E1502967E521004392B0 /* Assets.xcassets */,
+				2B67E1522967E521004392B0 /* Gifty.entitlements */,
+				2B67E14B2967E51F004392B0 /* Gifty.xcdatamodeld */,
+				2B67E1532967E521004392B0 /* Preview Content */,
+			);
+			path = Gifty;
+			sourceTree = "<group>";
+		};
+		2B67E1532967E521004392B0 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				2B67E1542967E521004392B0 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2B67E15D2967E522004392B0 /* GiftyTests */ = {
+			isa = PBXGroup;
+			children = (
+				2B67E15E2967E522004392B0 /* GiftyTests.swift */,
+			);
+			path = GiftyTests;
+			sourceTree = "<group>";
+		};
+		2B67E1672967E522004392B0 /* GiftyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2B67E1682967E522004392B0 /* GiftyUITests.swift */,
+				2B67E16A2967E522004392B0 /* GiftyUITestsLaunchTests.swift */,
+			);
+			path = GiftyUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2B67E1432967E51F004392B0 /* Gifty */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B67E16E2967E522004392B0 /* Build configuration list for PBXNativeTarget "Gifty" */;
+			buildPhases = (
+				2B67E1402967E51F004392B0 /* Sources */,
+				2B67E1412967E51F004392B0 /* Frameworks */,
+				2B67E1422967E51F004392B0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Gifty;
+			productName = Gifty;
+			productReference = 2B67E1442967E51F004392B0 /* Gifty.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2B67E1592967E522004392B0 /* GiftyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B67E1712967E522004392B0 /* Build configuration list for PBXNativeTarget "GiftyTests" */;
+			buildPhases = (
+				2B67E1562967E522004392B0 /* Sources */,
+				2B67E1572967E522004392B0 /* Frameworks */,
+				2B67E1582967E522004392B0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2B67E15C2967E522004392B0 /* PBXTargetDependency */,
+			);
+			name = GiftyTests;
+			productName = GiftyTests;
+			productReference = 2B67E15A2967E522004392B0 /* GiftyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2B67E1632967E522004392B0 /* GiftyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B67E1742967E522004392B0 /* Build configuration list for PBXNativeTarget "GiftyUITests" */;
+			buildPhases = (
+				2B67E1602967E522004392B0 /* Sources */,
+				2B67E1612967E522004392B0 /* Frameworks */,
+				2B67E1622967E522004392B0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2B67E1662967E522004392B0 /* PBXTargetDependency */,
+			);
+			name = GiftyUITests;
+			productName = GiftyUITests;
+			productReference = 2B67E1642967E522004392B0 /* GiftyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2B67E13C2967E51F004392B0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					2B67E1432967E51F004392B0 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					2B67E1592967E522004392B0 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 2B67E1432967E51F004392B0;
+					};
+					2B67E1632967E522004392B0 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 2B67E1432967E51F004392B0;
+					};
+				};
+			};
+			buildConfigurationList = 2B67E13F2967E51F004392B0 /* Build configuration list for PBXProject "Gifty" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2B67E13B2967E51F004392B0;
+			productRefGroup = 2B67E1452967E51F004392B0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2B67E1432967E51F004392B0 /* Gifty */,
+				2B67E1592967E522004392B0 /* GiftyTests */,
+				2B67E1632967E522004392B0 /* GiftyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2B67E1422967E51F004392B0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B67E1552967E521004392B0 /* Preview Assets.xcassets in Resources */,
+				2B67E1512967E521004392B0 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B67E1582967E522004392B0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B67E1622967E522004392B0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2B67E1402967E51F004392B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B67E1482967E51F004392B0 /* GiftyApp.swift in Sources */,
+				2B67E14D2967E51F004392B0 /* Gifty.xcdatamodeld in Sources */,
+				2B67E14F2967E51F004392B0 /* ContentView.swift in Sources */,
+				2B67E14A2967E51F004392B0 /* Persistence.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B67E1562967E522004392B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B67E15F2967E522004392B0 /* GiftyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B67E1602967E522004392B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B67E16B2967E522004392B0 /* GiftyUITestsLaunchTests.swift in Sources */,
+				2B67E1692967E522004392B0 /* GiftyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2B67E15C2967E522004392B0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2B67E1432967E51F004392B0 /* Gifty */;
+			targetProxy = 2B67E15B2967E522004392B0 /* PBXContainerItemProxy */;
+		};
+		2B67E1662967E522004392B0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2B67E1432967E51F004392B0 /* Gifty */;
+			targetProxy = 2B67E1652967E522004392B0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2B67E16C2967E522004392B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2B67E16D2967E522004392B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		2B67E16F2967E522004392B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Gifty/Gifty.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Gifty/Preview Content\"";
+				DEVELOPMENT_TEAM = 63R9P9UTXQ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 12.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.deanfam.gifty.Gifty;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2B67E1702967E522004392B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Gifty/Gifty.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Gifty/Preview Content\"";
+				DEVELOPMENT_TEAM = 63R9P9UTXQ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 12.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.deanfam.gifty.Gifty;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2B67E1722967E522004392B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 63R9P9UTXQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MACOSX_DEPLOYMENT_TARGET = 12.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.deanfam.gifty.GiftyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Gifty.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Gifty";
+			};
+			name = Debug;
+		};
+		2B67E1732967E522004392B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 63R9P9UTXQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MACOSX_DEPLOYMENT_TARGET = 12.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.deanfam.gifty.GiftyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Gifty.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Gifty";
+			};
+			name = Release;
+		};
+		2B67E1752967E522004392B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 63R9P9UTXQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MACOSX_DEPLOYMENT_TARGET = 12.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.deanfam.gifty.GiftyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Gifty;
+			};
+			name = Debug;
+		};
+		2B67E1762967E522004392B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 63R9P9UTXQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MACOSX_DEPLOYMENT_TARGET = 12.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.deanfam.gifty.GiftyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Gifty;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2B67E13F2967E51F004392B0 /* Build configuration list for PBXProject "Gifty" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B67E16C2967E522004392B0 /* Debug */,
+				2B67E16D2967E522004392B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2B67E16E2967E522004392B0 /* Build configuration list for PBXNativeTarget "Gifty" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B67E16F2967E522004392B0 /* Debug */,
+				2B67E1702967E522004392B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2B67E1712967E522004392B0 /* Build configuration list for PBXNativeTarget "GiftyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B67E1722967E522004392B0 /* Debug */,
+				2B67E1732967E522004392B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2B67E1742967E522004392B0 /* Build configuration list for PBXNativeTarget "GiftyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B67E1752967E522004392B0 /* Debug */,
+				2B67E1762967E522004392B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2B67E14B2967E51F004392B0 /* Gifty.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2B67E14C2967E51F004392B0 /* Gifty.xcdatamodel */,
+			);
+			currentVersion = 2B67E14C2967E51F004392B0 /* Gifty.xcdatamodel */;
+			path = Gifty.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 2B67E13C2967E51F004392B0 /* Project object */;
+}
