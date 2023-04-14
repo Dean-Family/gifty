@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B12460929CE5C9E00452EFB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2B12460829CE5C9E00452EFB /* README.md */; };
 		2B67E1482967E51F004392B0 /* GiftyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B67E1472967E51F004392B0 /* GiftyApp.swift */; };
 		2B67E14A2967E51F004392B0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B67E1492967E51F004392B0 /* Persistence.swift */; };
 		2B67E14D2967E51F004392B0 /* Gifty.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B67E14B2967E51F004392B0 /* Gifty.xcdatamodeld */; };
@@ -16,6 +17,7 @@
 		2B67E15F2967E522004392B0 /* GiftyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B67E15E2967E522004392B0 /* GiftyTests.swift */; };
 		2B67E1692967E522004392B0 /* GiftyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B67E1682967E522004392B0 /* GiftyUITests.swift */; };
 		2B67E16B2967E522004392B0 /* GiftyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B67E16A2967E522004392B0 /* GiftyUITestsLaunchTests.swift */; };
+		2B87525B29E5184D00B87D7F /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B87525A29E5184D00B87D7F /* SplashScreenView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B12460829CE5C9E00452EFB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		2B12460A29CE5EBA00452EFB /* PROJECT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PROJECT.md; sourceTree = "<group>"; };
 		2B67E1442967E51F004392B0 /* Gifty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gifty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B67E1472967E51F004392B0 /* GiftyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftyApp.swift; sourceTree = "<group>"; };
 		2B67E1492967E51F004392B0 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -49,6 +53,7 @@
 		2B67E1642967E522004392B0 /* GiftyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiftyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B67E1682967E522004392B0 /* GiftyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftyUITests.swift; sourceTree = "<group>"; };
 		2B67E16A2967E522004392B0 /* GiftyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftyUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2B87525A29E5184D00B87D7F /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +111,9 @@
 				2B67E1522967E521004392B0 /* Gifty.entitlements */,
 				2B67E14B2967E51F004392B0 /* Gifty.xcdatamodeld */,
 				2B67E1532967E521004392B0 /* Preview Content */,
+				2B12460829CE5C9E00452EFB /* README.md */,
+				2B12460A29CE5EBA00452EFB /* PROJECT.md */,
+				2B87525A29E5184D00B87D7F /* SplashScreenView.swift */,
 			);
 			path = Gifty;
 			sourceTree = "<group>";
@@ -239,6 +247,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B12460929CE5C9E00452EFB /* README.md in Resources */,
 				2B67E1552967E521004392B0 /* Preview Assets.xcassets in Resources */,
 				2B67E1512967E521004392B0 /* Assets.xcassets in Resources */,
 			);
@@ -267,6 +276,7 @@
 			files = (
 				2B67E1482967E51F004392B0 /* GiftyApp.swift in Sources */,
 				2B67E14D2967E51F004392B0 /* Gifty.xcdatamodeld in Sources */,
+				2B87525B29E5184D00B87D7F /* SplashScreenView.swift in Sources */,
 				2B67E14F2967E51F004392B0 /* ContentView.swift in Sources */,
 				2B67E14A2967E51F004392B0 /* Persistence.swift in Sources */,
 			);

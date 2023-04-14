@@ -8,6 +8,9 @@
 import SwiftUI
 import CoreData
 
+import SwiftUI
+import CoreData
+
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
@@ -16,13 +19,13 @@ struct ContentView: View {
         animation: .default)
     private var items: FetchedResults<Item>
 
+    @State private var selectedItem: Item?
+
     var body: some View {
         NavigationView {
             List {
                 ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
+                    NavigationLink(destination: Text("Item at \(item.timestamp!, formatter: itemFormatter)"), tag: item, selection: $selectedItem) {
                         Text(item.timestamp!, formatter: itemFormatter)
                     }
                 }
@@ -34,6 +37,13 @@ struct ContentView: View {
                     EditButton()
                 }
 #endif
+                ToolbarItem(placement: .navigation) {
+                    Button(action: deleteSelectedItem) {
+                        Label("Delete", systemImage: "trash")
+                    }
+                    .disabled(selectedItem == nil)
+                }
+                
                 ToolbarItem {
                     Button(action: addItem) {
                         Label("Add Item", systemImage: "plus")
@@ -41,6 +51,23 @@ struct ContentView: View {
                 }
             }
             Text("Select an item")
+        }
+    }
+
+    // Other existing functions (addItem, deleteItems) go here
+
+    private func deleteSelectedItem() {
+        if let selectedItem = selectedItem {
+            withAnimation {
+                viewContext.delete(selectedItem)
+                do {
+                    try viewContext.save()
+                } catch {
+                    let nsError = error as NSError
+                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                }
+            }
+            self.selectedItem = nil
         }
     }
 

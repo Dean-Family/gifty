@@ -13,8 +13,8 @@ struct GiftyApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            SplashScreenView()
+               .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }
