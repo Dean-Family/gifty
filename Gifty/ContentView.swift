@@ -1,82 +1,33 @@
 import SwiftUI
 import CoreData
 
-struct ContentView: View {
+struct GiftsView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
+    
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
         animation: .default)
     private var items: FetchedResults<Item>
-
-    @State private var selectedItem: Item?
-
+    @State private var isPresentingAddGiftView = false
+    
     var body: some View {
         NavigationView {
             List {
                 ForEach(items) { item in
-                    NavigationLink(destination: Text("Item: \(item.name ?? "No name") - \(item.desc ?? "No description")"), tag: item, selection: $selectedItem) {
-                        HStack {
-                            Text(item.name ?? "No name")
-                            Spacer()
-                            Text(item.desc ?? "No description")
-                        }
-                    }
+                    GiftRow(item: item)
                 }
                 .onDelete(perform: deleteItems)
             }
+            .navigationTitle("Gifts")
             .toolbar {
-#if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-#endif
-                ToolbarItem(placement: .navigation) {
-                    Button(action: deleteSelectedItem) {
-                        Label("Delete", systemImage: "trash")
-                    }
-                    .disabled(selectedItem == nil)
-                }
-                
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                ToolbarItem(placement: .automatic) {
+                    Button(action: { isPresentingAddGiftView = true }) {
+                        Image(systemName: "plus")
                     }
                 }
             }
-            Text("Select an item")
-        }
-    }
-
-    // Other existing functions (addItem, deleteItems) go here
-
-    private func deleteSelectedItem() {
-        if let selectedItem = selectedItem {
-            withAnimation {
-                viewContext.delete(selectedItem)
-                do {
-                    try viewContext.save()
-                } catch {
-                    let nsError = error as NSError
-                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-                }
-            }
-            self.selectedItem = nil
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-            newItem.name = "Sample Name"
-            newItem.desc = "Sample Description"
-
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            .sheet(isPresented: $isPresentingAddGiftView) {
+                AddGiftView().environment(\.managedObjectContext, viewContext)
             }
         }
     }
@@ -95,16 +46,30 @@ struct ContentView: View {
     }
 }
 
-private let itemFormatter: DateFormatter = {
+struct GiftRow: View {
+    var item: Item
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(item.name ?? "Unnamed gift")
+                .font(.headline)
+            Text("Date: \(item.timestamp ?? Date(), formatter: dateFormatter)")
+                .font(.subheadline)
+                .foregroundColor(.gray)
+        }
+    }
+}
+
+private let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
+    formatter.dateStyle = .long
+    formatter.timeStyle = .none
     return formatter
 }()
 
-struct ContentView_Previews: PreviewProvider {
+struct GiftsView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        GiftsView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
 

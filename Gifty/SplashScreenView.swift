@@ -13,7 +13,7 @@ struct SplashScreenView: View {
     var body: some View {
         VStack {
             if isActive {
-                ContentView()
+                GiftsView()
                     .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
             } else {
                 Image("Title")
