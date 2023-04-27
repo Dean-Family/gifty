@@ -15,6 +15,11 @@ struct GiftsView: View {
             List {
                 ForEach(items) { item in
                     GiftRow(item: item)
+                        .contextMenu {
+                            Button(action: { deleteItems(offsets: IndexSet(integer: items.firstIndex(of: item)!)) }) {
+                                                            Label("Delete", systemImage: "trash")
+                                                        }
+                        }
                 }
                 .onDelete(perform: deleteItems)
             }
