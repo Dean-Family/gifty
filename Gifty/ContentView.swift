@@ -4,10 +4,18 @@ import CoreData
 struct GiftsView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
+    @State private var selectedOccasion: Occasion?
+    @State private var isPresentingOccasionSelector = false
+    
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
         animation: .default)
     private var items: FetchedResults<Item>
+    private var filteredItems: [Item] {
+            items.filter { item in
+                item.occasion == selectedOccasion
+            }
+        }
     @State private var isPresentingAddGiftView = false
     
     var body: some View {
@@ -16,7 +24,7 @@ struct GiftsView: View {
                 ForEach(items) { item in
                     GiftRow(item: item)
                         .contextMenu {
-                            Button(action: { deleteItems(offsets: IndexSet(integer: items.firstIndex(of: item)!)) }) {
+                            Button(action: { deleteItems(offsets: IndexSet(integer: filteredItems.firstIndex(of: item)!)) }) {
                                                             Label("Delete", systemImage: "trash")
                                                         }
                         }
@@ -26,6 +34,11 @@ struct GiftsView: View {
             .navigationTitle("Gifts")
             .toolbar {
                 ToolbarItem(placement: .automatic) {
+                                    Button(action: { isPresentingOccasionSelector = true }) {
+                                        Image(systemName: "calendar")
+                                    }
+                                }
+                ToolbarItem(placement: .automatic) {
                     Button(action: { isPresentingAddGiftView = true }) {
                         Image(systemName: "plus")
                     }
@@ -34,6 +47,11 @@ struct GiftsView: View {
             .sheet(isPresented: $isPresentingAddGiftView) {
                 AddGiftView().environment(\.managedObjectContext, viewContext)
             }
+            .sheet(isPresented: $isPresentingOccasionSelector) {
+                            OccasionSelectorView(selectedOccasion: $selectedOccasion)
+                                .environment(\.managedObjectContext, viewContext)
+                        }
+
         }
     }
 
@@ -148,3 +166,33 @@ struct GiftsView_Previews: PreviewProvider {
     }
 }
 
+
+struct OccasionSelectorView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.presentationMode) private var presentationMode
+    
+    @Binding var selectedOccasion: Occasion?
+    
+    @FetchRequest(entity: Occasion.entity(),
+                  sortDescriptors: [NSSortDescriptor(keyPath: \Occasion.name, ascending: true)],
+                  predicate: nil,
+                  animation: .default)
+    private var occasions: FetchedResults<Occasion>
+    
+    var body: some View {
+        NavigationView {
+            List {
+                ForEach(occasions) { occasion in
+                    Button(action: {
+                        selectedOccasion = occasion
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Text(occasion.name ?? "Unnamed Occasion")
+                            .foregroundColor(occasion == selectedOccasion ? .blue : .primary)
+                    }
+                }
+            }
+            .navigationTitle("Select Occasion")
+        }
+    }
+}

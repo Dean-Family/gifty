@@ -4,5 +4,11 @@
         <attribute name="desc" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="occasion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Occasion" inverseName="items" inverseEntity="Occasion"/>
+    </entity>
+    <entity name="Occasion" representedClassName="Occasion" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="items" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="occasion" inverseEntity="Item"/>
     </entity>
 </model>
