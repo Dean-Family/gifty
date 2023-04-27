@@ -19,18 +19,20 @@ struct AddGiftView: View {
             HStack {
                 Text("Name: ")
                     .fontWeight(.bold)
+                    .padding(10)
                 TextField("Enter gift name", text: $giftName )
                     .textFieldStyle(.roundedBorder)
-                    .padding(10)
+                    .padding()
             }
 
             HStack {
                 Text("Description: ")
                     .fontWeight(.bold)
+                    .padding(10)
                 TextEditor(text: $giftDesc)
                     .frame(width: 300, height: 100)
                     .textFieldStyle(.roundedBorder)
-                    .padding(10)
+                    .padding()
             }
             HStack {
                 Button(action: {
@@ -38,7 +40,7 @@ struct AddGiftView: View {
                 }) {
                     Text("Add Gift")
                         .fontWeight(.bold)
-                        .padding(10)
+                        .padding()
                 }
             }
             Spacer()
