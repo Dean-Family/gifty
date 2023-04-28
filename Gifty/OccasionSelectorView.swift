@@ -32,6 +32,12 @@ struct OccasionSelectorView: View {
                                     presentationMode.wrappedValue.dismiss()
                                 }
                 }
+                    Text("None")
+                                .onTapGesture {
+                                    selectedOccasion = nil
+                                    presentationMode.wrappedValue.dismiss()
+                                }
+                Spacer()
                 Button(action: {
                                 isPresentingAddOccasionView = true
                             }) {
@@ -40,6 +46,7 @@ struct OccasionSelectorView: View {
                             .sheet(isPresented: $isPresentingAddOccasionView) {
                                 AddOccasionView()
                             }
+                Spacer()
             }
             .navigationTitle("Select Occasion")
         }
