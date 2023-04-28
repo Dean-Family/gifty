@@ -21,7 +21,7 @@ struct GiftsView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(items) { item in
+                ForEach(filteredItems) { item in
                     GiftRow(item: item)
                         .contextMenu {
                             Button(action: { deleteItems(offsets: IndexSet(integer: filteredItems.firstIndex(of: item)!)) }) {
@@ -90,8 +90,14 @@ struct GiftDetailView: View {
     @State private var isEditing = false
     @State private var editedName = ""
     @State private var editedDesc = ""
+    @State private var selectedOccasion: Occasion?
 
     var item: Item
+    
+    @FetchRequest(
+       sortDescriptors: [NSSortDescriptor(keyPath: \Occasion.timestamp, ascending: true)],
+       animation: .default)
+    private var occasions: FetchedResults<Occasion>
 
     var body: some View {
         VStack {
@@ -121,6 +127,26 @@ struct GiftDetailView: View {
                 }
             }
             .padding()
+            HStack {
+               Text("Occasion: ")
+               .fontWeight(.bold)
+                if isEditing {
+                    Picker("Occasion", selection: $selectedOccasion) {
+                        ForEach(occasions) { occasion in
+                            Text(occasion.name ?? "Unnamed occasion").tag(occasion as Occasion?)
+                        }
+                    }
+                    .pickerStyle(.automatic)
+                } else {
+                    Text(item.occasion?.name ?? "No occasion")
+                        .foregroundColor(.gray)
+                        .onAppear {
+                            selectedOccasion = item.occasion
+                        }
+                }
+
+            }
+            .padding()
             Spacer()
         }
         .padding()
@@ -131,6 +157,7 @@ struct GiftDetailView: View {
                     if isEditing {
                         item.name = editedName
                         item.desc = editedDesc
+                        item.occasion = selectedOccasion
                         do {
                             try viewContext.save()
                             isEditing = false
@@ -142,6 +169,7 @@ struct GiftDetailView: View {
                         isEditing = true
                         editedName = item.name ?? ""
                         editedDesc = item.desc ?? ""
+                        selectedOccasion = item.occasion
                     }
                 }) {
                     Text(isEditing ? "Done" : "Edit")
@@ -166,33 +194,3 @@ struct GiftsView_Previews: PreviewProvider {
     }
 }
 
-
-struct OccasionSelectorView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-    @Environment(\.presentationMode) private var presentationMode
-    
-    @Binding var selectedOccasion: Occasion?
-    
-    @FetchRequest(entity: Occasion.entity(),
-                  sortDescriptors: [NSSortDescriptor(keyPath: \Occasion.name, ascending: true)],
-                  predicate: nil,
-                  animation: .default)
-    private var occasions: FetchedResults<Occasion>
-    
-    var body: some View {
-        NavigationView {
-            List {
-                ForEach(occasions) { occasion in
-                    Button(action: {
-                        selectedOccasion = occasion
-                        presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Text(occasion.name ?? "Unnamed Occasion")
-                            .foregroundColor(occasion == selectedOccasion ? .blue : .primary)
-                    }
-                }
-            }
-            .navigationTitle("Select Occasion")
-        }
-    }
-}

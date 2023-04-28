@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2B12460929CE5C9E00452EFB /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2B12460829CE5C9E00452EFB /* README.md */; };
+		2B2F014B29FB3EBB00DD96F8 /* OccasionSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2F014A29FB3EBB00DD96F8 /* OccasionSelectorView.swift */; };
 		2B67E1482967E51F004392B0 /* GiftyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B67E1472967E51F004392B0 /* GiftyApp.swift */; };
 		2B67E14A2967E51F004392B0 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B67E1492967E51F004392B0 /* Persistence.swift */; };
 		2B67E14D2967E51F004392B0 /* Gifty.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B67E14B2967E51F004392B0 /* Gifty.xcdatamodeld */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		2B12460829CE5C9E00452EFB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2B12460A29CE5EBA00452EFB /* PROJECT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PROJECT.md; sourceTree = "<group>"; };
+		2B2F014A29FB3EBB00DD96F8 /* OccasionSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OccasionSelectorView.swift; sourceTree = "<group>"; };
 		2B67E1442967E51F004392B0 /* Gifty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gifty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B67E1472967E51F004392B0 /* GiftyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftyApp.swift; sourceTree = "<group>"; };
 		2B67E1492967E51F004392B0 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				2B12460A29CE5EBA00452EFB /* PROJECT.md */,
 				2B87525A29E5184D00B87D7F /* SplashScreenView.swift */,
 				2B7A4FE529F9E24600C5F95D /* AddGiftView.swift */,
+				2B2F014A29FB3EBB00DD96F8 /* OccasionSelectorView.swift */,
 			);
 			path = Gifty;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B2F014B29FB3EBB00DD96F8 /* OccasionSelectorView.swift in Sources */,
 				2B67E1482967E51F004392B0 /* GiftyApp.swift in Sources */,
 				2B67E14D2967E51F004392B0 /* Gifty.xcdatamodeld in Sources */,
 				2B87525B29E5184D00B87D7F /* SplashScreenView.swift in Sources */,

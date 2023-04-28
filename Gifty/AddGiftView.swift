@@ -9,6 +9,10 @@ import SwiftUI
 struct AddGiftView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.presentationMode) private var presentationMode
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Occasion.timestamp, ascending: true)]) private var occasions: FetchedResults<Occasion>
+    
+    @State private var selectedOccasion: Occasion?
+
 
     @State private var giftName = ""
     @State private var giftDesc = ""
@@ -34,6 +38,20 @@ struct AddGiftView: View {
                     .textFieldStyle(.roundedBorder)
                     .padding()
             }
+
+            HStack {
+                Text("Occasion: ")
+                    .fontWeight(.bold)
+                    .padding(10)
+                Picker("Occasion", selection: $selectedOccasion) {
+                    ForEach(occasions) { occasion in
+                        Text(occasion.name ?? "Unnamed occasion").tag(occasion as Occasion?)
+                    }
+                }
+                .pickerStyle(.automatic)
+                .padding()
+            }
+
             HStack {
                 Button(action: {
                     addGift()
@@ -57,6 +75,7 @@ struct AddGiftView: View {
         newGift.timestamp = Date()
         newGift.name = giftName
         newGift.desc = giftDesc
+        newGift.occasion = selectedOccasion
 
         do {
             try viewContext.save()
