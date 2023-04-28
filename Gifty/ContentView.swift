@@ -98,6 +98,13 @@ struct GiftDetailView: View {
        sortDescriptors: [NSSortDescriptor(keyPath: \Occasion.timestamp, ascending: true)],
        animation: .default)
     private var occasions: FetchedResults<Occasion>
+    var title: String {
+            if let occasionName = selectedOccasion?.name {
+                return "\(occasionName)"
+            } else {
+                return "Gift Details"
+            }
+        }
 
     var body: some View {
         VStack {
@@ -150,7 +157,7 @@ struct GiftDetailView: View {
             Spacer()
         }
         .padding()
-        .navigationTitle("Gift Details")
+        .navigationTitle(title)
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
                 Button(action: {
