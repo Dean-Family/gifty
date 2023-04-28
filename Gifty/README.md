@@ -37,5 +37,10 @@ This project is to be licensed under MIT, BSD and GPLv3.
 
 ## Summary
 
-The Gift Giving App is a mobile application designed to help users manage their gift-giving events and stay organized. It offers features such as adding gifts with recipient details and due dates, viewing upcoming gifts, marking gifts as purchased/given, editing/deleting gifts, searching gifts, and receiving reminders for important occasions. Developed with Swift and SwiftUI, the app targets busy professionals, forgetful parents, and others who want to streamline their gift-giving process. Available for iPhone users, the app is free to download and use.
+The Gift Giving App is a apple unified application designed to help users manage their gift-giving events 
+and stay organized. It offers features such as adding gifts with recipient details and due dates, 
+viewing upcoming gifts, marking gifts as purchased/given, editing/deleting gifts, searching gifts, 
+and receiving reminders for important occasions. Developed with Swift and SwiftUI, the app targets 
+busy professionals, forgetful parents, and others who want to streamline their gift-giving process. 
+Available for iPhone users and macOS, the app is available to download and use.
 
