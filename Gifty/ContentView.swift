@@ -28,6 +28,14 @@ struct ContentView: View {
                         Text(item.timestamp!, formatter: itemFormatter)
                         Text(item.name ?? "Unknown")
                     }
+                    .contextMenu { // Context menu for right-click actions
+                                Button(action: {
+                                    deleteItem(item: item)
+                                }) {
+                                    Text("Delete")
+                                    Image(systemName: "trash")
+                                }
+                            }
                 }
                 .onDelete(perform: deleteItems)
             }
@@ -85,6 +93,20 @@ struct ContentView: View {
             }
         }
     }
+    private func deleteItem(item: Item) {
+        withAnimation {
+            viewContext.delete(item)
+
+            do {
+                try viewContext.save()
+            } catch {
+                // Handle the error appropriately
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
+    }
+
 }
 
 private let itemFormatter: DateFormatter = {
