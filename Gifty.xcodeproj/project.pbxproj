@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2B5A1CB82ADFA6A2005BC16E /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A1CB72ADFA6A2005BC16E /* AddItemView.swift */; };
+		2B5A1CBA2ADFB523005BC16E /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A1CB92ADFB523005BC16E /* Documentation.docc */; };
 		2BD5579C2A5A9635000DB9F8 /* GiftyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5579B2A5A9635000DB9F8 /* GiftyApp.swift */; };
 		2BD5579E2A5A9635000DB9F8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5579D2A5A9635000DB9F8 /* Persistence.swift */; };
 		2BD557A12A5A9635000DB9F8 /* Gifty.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5579F2A5A9635000DB9F8 /* Gifty.xcdatamodeld */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		2B5A1CB72ADFA6A2005BC16E /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
+		2B5A1CB92ADFB523005BC16E /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
 		2BD557982A5A9635000DB9F8 /* Gifty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gifty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BD5579B2A5A9635000DB9F8 /* GiftyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftyApp.swift; sourceTree = "<group>"; };
 		2BD5579D2A5A9635000DB9F8 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 		2BD5578F2A5A9635000DB9F8 = {
 			isa = PBXGroup;
 			children = (
+				2B5A1CB92ADFB523005BC16E /* Documentation.docc */,
 				2BD5579A2A5A9635000DB9F8 /* Gifty */,
 				2BD557B12A5A9636000DB9F8 /* GiftyTests */,
 				2BD557BB2A5A9636000DB9F8 /* GiftyUITests */,
@@ -269,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BD5579C2A5A9635000DB9F8 /* GiftyApp.swift in Sources */,
+				2B5A1CBA2ADFB523005BC16E /* Documentation.docc in Sources */,
 				2BD557A12A5A9635000DB9F8 /* Gifty.xcdatamodeld in Sources */,
 				2BD557A32A5A9635000DB9F8 /* ContentView.swift in Sources */,
 				2BD5579E2A5A9635000DB9F8 /* Persistence.swift in Sources */,
