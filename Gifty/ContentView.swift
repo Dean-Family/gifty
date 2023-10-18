@@ -15,6 +15,7 @@ struct ContentView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
         animation: .default)
     private var items: FetchedResults<Item>
+    @State private var showingAddItemView: Bool = false
 
     var body: some View {
         NavigationView {
@@ -22,8 +23,10 @@ struct ContentView: View {
                 ForEach(items) { item in
                     NavigationLink {
                         Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                        Text("\(item.name ?? "Unknown")")
                     } label: {
                         Text(item.timestamp!, formatter: itemFormatter)
+                        Text(item.name ?? "Unknown")
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -35,12 +38,20 @@ struct ContentView: View {
                 }
 #endif
                 ToolbarItem {
-                    Button(action: addItem) {
+                    Button(action: {
+                        showingAddItemView = true
+                    }) {
                         Label("Add Item", systemImage: "plus")
                     }
                 }
+                
+
             }
             Text("Select an item")
+            
+        }
+        .sheet(isPresented: $showingAddItemView) {
+            AddItemView().environment(\.managedObjectContext, self.viewContext)
         }
     }
 
