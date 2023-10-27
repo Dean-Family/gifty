@@ -45,8 +45,9 @@ struct ContentView: View {
                     EditButton()
                 }
 #endif
-                ToolbarItem {
-                    Button(action: {
+                ToolbarItem(placement: .primaryAction) {
+                    Button(
+                        action: {
                         showingAddItemView = true
                     }) {
                         Label("Add Item", systemImage: "plus")

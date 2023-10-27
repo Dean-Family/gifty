@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B26E4022AEA3E68005F5278 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B26E4012AEA3E68005F5278 /* MainView.swift */; };
 		2B5A1CB82ADFA6A2005BC16E /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A1CB72ADFA6A2005BC16E /* AddItemView.swift */; };
 		2B5A1CBA2ADFB523005BC16E /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A1CB92ADFB523005BC16E /* Documentation.docc */; };
 		2BD5579C2A5A9635000DB9F8 /* GiftyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5579B2A5A9635000DB9F8 /* GiftyApp.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B26E4012AEA3E68005F5278 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2B5A1CB72ADFA6A2005BC16E /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
 		2B5A1CB92ADFB523005BC16E /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
 		2BD557982A5A9635000DB9F8 /* Gifty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gifty.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +114,7 @@
 				2BD5579F2A5A9635000DB9F8 /* Gifty.xcdatamodeld */,
 				2BD557A72A5A9636000DB9F8 /* Preview Content */,
 				2B5A1CB72ADFA6A2005BC16E /* AddItemView.swift */,
+				2B26E4012AEA3E68005F5278 /* MainView.swift */,
 			);
 			path = Gifty;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BD5579C2A5A9635000DB9F8 /* GiftyApp.swift in Sources */,
+				2B26E4022AEA3E68005F5278 /* MainView.swift in Sources */,
 				2B5A1CBA2ADFB523005BC16E /* Documentation.docc in Sources */,
 				2BD557A12A5A9635000DB9F8 /* Gifty.xcdatamodeld in Sources */,
 				2BD557A32A5A9635000DB9F8 /* ContentView.swift in Sources */,
