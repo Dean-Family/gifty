@@ -29,7 +29,7 @@ struct MainView: View {
                 .tag(1)
             
             // People View
-            PeopleView()
+            PersonView()
                 .tabItem {
                     Image(systemName: "person.2")
                     Text("People")
@@ -39,15 +39,6 @@ struct MainView: View {
 #if os(OSX)
         .padding()
 #endif
-    }
-}
-
-struct PeopleView: View {
-    var body: some View {
-        NavigationView {
-            Text("People for giftees go here")
-                .navigationTitle("People")
-        }
     }
 }
 

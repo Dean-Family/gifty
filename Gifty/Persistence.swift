@@ -20,6 +20,12 @@ struct PersistenceController {
         for _ in 0..<10 {
             let newEvent = Event(context: viewContext)
             newEvent.date = Date()
+            newEvent.name = "Christmas"
+        }
+        for _ in 0..<10 {
+            let newPerson = Person(context: viewContext)
+            newPerson.lastname = "Esting"
+            newPerson.firstname = "Tina"
         }
         do {
             try viewContext.save()
