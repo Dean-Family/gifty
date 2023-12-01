@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B1B642C2B19BA190074FACE /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B642B2B19BA190074FACE /* EventView.swift */; };
+		2B1B642E2B19BCD30074FACE /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B642D2B19BCD30074FACE /* AddEventView.swift */; };
 		2B26E4022AEA3E68005F5278 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B26E4012AEA3E68005F5278 /* MainView.swift */; };
 		2B5A1CB82ADFA6A2005BC16E /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A1CB72ADFA6A2005BC16E /* AddItemView.swift */; };
 		2B5A1CBA2ADFB523005BC16E /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A1CB92ADFB523005BC16E /* Documentation.docc */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B1B642B2B19BA190074FACE /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
+		2B1B642D2B19BCD30074FACE /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
 		2B26E4012AEA3E68005F5278 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2B5A1CB72ADFA6A2005BC16E /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
 		2B5A1CB92ADFB523005BC16E /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
@@ -115,6 +119,8 @@
 				2BD557A72A5A9636000DB9F8 /* Preview Content */,
 				2B5A1CB72ADFA6A2005BC16E /* AddItemView.swift */,
 				2B26E4012AEA3E68005F5278 /* MainView.swift */,
+				2B1B642B2B19BA190074FACE /* EventView.swift */,
+				2B1B642D2B19BCD30074FACE /* AddEventView.swift */,
 			);
 			path = Gifty;
 			sourceTree = "<group>";
@@ -208,7 +214,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					2BD557972A5A9635000DB9F8 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -278,9 +284,11 @@
 				2B26E4022AEA3E68005F5278 /* MainView.swift in Sources */,
 				2B5A1CBA2ADFB523005BC16E /* Documentation.docc in Sources */,
 				2BD557A12A5A9635000DB9F8 /* Gifty.xcdatamodeld in Sources */,
+				2B1B642E2B19BCD30074FACE /* AddEventView.swift in Sources */,
 				2BD557A32A5A9635000DB9F8 /* ContentView.swift in Sources */,
 				2BD5579E2A5A9635000DB9F8 /* Persistence.swift in Sources */,
 				2B5A1CB82ADFA6A2005BC16E /* AddItemView.swift in Sources */,
+				2B1B642C2B19BA190074FACE /* EventView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,9 +358,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -408,9 +418,11 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -434,6 +446,7 @@
 				CODE_SIGN_ENTITLEMENTS = Gifty/Gifty.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Gifty/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -470,6 +483,7 @@
 				CODE_SIGN_ENTITLEMENTS = Gifty/Gifty.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Gifty/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -505,6 +519,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
@@ -527,6 +542,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
@@ -548,6 +564,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
@@ -569,6 +586,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MACOSX_DEPLOYMENT_TARGET = 13.3;

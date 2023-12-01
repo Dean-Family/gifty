@@ -17,6 +17,10 @@ struct PersistenceController {
             let newItem = Item(context: viewContext)
             newItem.timestamp = Date()
         }
+        for _ in 0..<10 {
+            let newEvent = Event(context: viewContext)
+            newEvent.date = Date()
+        }
         do {
             try viewContext.save()
         } catch {

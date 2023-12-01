@@ -42,15 +42,6 @@ struct MainView: View {
     }
 }
 
-struct EventView: View {
-    var body: some View {
-        NavigationView {
-            Text("Events go here")
-                .navigationTitle("Events")
-        }
-    }
-}
-
 struct PeopleView: View {
     var body: some View {
         NavigationView {
