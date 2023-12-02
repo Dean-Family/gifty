@@ -3,16 +3,16 @@
     <entity name="Event" representedClassName="Event" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="event" inverseEntity="Item"/>
+        <relationship name="gift" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Gift" inverseName="event" inverseEntity="Gift"/>
     </entity>
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
+    <entity name="Gift" representedClassName="Gift" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="item" inverseEntity="Event"/>
-        <relationship name="person" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="item" inverseEntity="Person"/>
+        <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="gift" inverseEntity="Event"/>
+        <relationship name="person" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="gift" inverseEntity="Person"/>
     </entity>
     <entity name="Person" representedClassName="Person" syncable="YES" codeGenerationType="class">
         <attribute name="firstname" optional="YES" attributeType="String"/>
         <attribute name="lastname" optional="YES" attributeType="String"/>
-        <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="person" inverseEntity="Item"/>
+        <relationship name="gift" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Gift" inverseName="person" inverseEntity="Gift"/>
     </entity>
 </model>

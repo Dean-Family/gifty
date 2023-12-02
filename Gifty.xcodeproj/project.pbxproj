@@ -12,7 +12,7 @@
 		2B1B64302B19C6090074FACE /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B642F2B19C6090074FACE /* PersonView.swift */; };
 		2B1B64322B19C9420074FACE /* AddPersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B64312B19C9420074FACE /* AddPersonView.swift */; };
 		2B26E4022AEA3E68005F5278 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B26E4012AEA3E68005F5278 /* MainView.swift */; };
-		2B5A1CB82ADFA6A2005BC16E /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A1CB72ADFA6A2005BC16E /* AddItemView.swift */; };
+		2B5A1CB82ADFA6A2005BC16E /* AddGiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A1CB72ADFA6A2005BC16E /* AddGiftView.swift */; };
 		2B5A1CBA2ADFB523005BC16E /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A1CB92ADFB523005BC16E /* Documentation.docc */; };
 		2BD5579C2A5A9635000DB9F8 /* GiftyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5579B2A5A9635000DB9F8 /* GiftyApp.swift */; };
 		2BD5579E2A5A9635000DB9F8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5579D2A5A9635000DB9F8 /* Persistence.swift */; };
@@ -48,7 +48,7 @@
 		2B1B642F2B19C6090074FACE /* PersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
 		2B1B64312B19C9420074FACE /* AddPersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPersonView.swift; sourceTree = "<group>"; };
 		2B26E4012AEA3E68005F5278 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		2B5A1CB72ADFA6A2005BC16E /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
+		2B5A1CB72ADFA6A2005BC16E /* AddGiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGiftView.swift; sourceTree = "<group>"; };
 		2B5A1CB92ADFB523005BC16E /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
 		2BD557982A5A9635000DB9F8 /* Gifty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gifty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BD5579B2A5A9635000DB9F8 /* GiftyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftyApp.swift; sourceTree = "<group>"; };
@@ -121,7 +121,7 @@
 				2BD557A62A5A9636000DB9F8 /* Gifty.entitlements */,
 				2BD5579F2A5A9635000DB9F8 /* Gifty.xcdatamodeld */,
 				2BD557A72A5A9636000DB9F8 /* Preview Content */,
-				2B5A1CB72ADFA6A2005BC16E /* AddItemView.swift */,
+				2B5A1CB72ADFA6A2005BC16E /* AddGiftView.swift */,
 				2B26E4012AEA3E68005F5278 /* MainView.swift */,
 				2B1B642B2B19BA190074FACE /* EventView.swift */,
 				2B1B642D2B19BCD30074FACE /* AddEventView.swift */,
@@ -295,7 +295,7 @@
 				2B1B64302B19C6090074FACE /* PersonView.swift in Sources */,
 				2BD557A32A5A9635000DB9F8 /* ContentView.swift in Sources */,
 				2BD5579E2A5A9635000DB9F8 /* Persistence.swift in Sources */,
-				2B5A1CB82ADFA6A2005BC16E /* AddItemView.swift in Sources */,
+				2B5A1CB82ADFA6A2005BC16E /* AddGiftView.swift in Sources */,
 				2B1B642C2B19BA190074FACE /* EventView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

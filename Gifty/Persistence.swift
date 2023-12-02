@@ -14,8 +14,8 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.name = "Item"
+            let newGift = Gift(context: viewContext)
+            newGift.name = "Gift"
         }
         for _ in 0..<10 {
             let newEvent = Event(context: viewContext)

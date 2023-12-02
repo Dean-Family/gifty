@@ -12,30 +12,30 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.name, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Gift.name, ascending: true)],
         animation: .default)
-    private var items: FetchedResults<Item>
-    @State private var showingAddItemView: Bool = false
+    private var gifts: FetchedResults<Gift>
+    @State private var showingAddGiftView: Bool = false
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(items) { item in
+                ForEach(gifts) { gift in
                     NavigationLink {
-                        Text("\(item.name ?? "Unknown")")
+                        Text("\(gift.name ?? "Unknown")")
                     } label: {
-                        Text(item.name ?? "Unknown")
+                        Text(gift.name ?? "Unknown")
                     }
                     .contextMenu { // Context menu for right-click actions
                                 Button(action: {
-                                    deleteItem(item: item)
+                                    deleteGift(gift: gift)
                                 }) {
                                     Text("Delete")
                                     Image(systemName: "trash")
                                 }
                             }
                 }
-                .onDelete(perform: deleteItems)
+                .onDelete(perform: deleteGifts)
             }
             .toolbar {
 #if os(iOS)
@@ -46,25 +46,25 @@ struct ContentView: View {
                 ToolbarItem(placement: .primaryAction) {
                     Button(
                         action: {
-                        showingAddItemView = true
+                        showingAddGiftView = true
                     }) {
-                        Label("Add Item", systemImage: "plus")
+                        Label("Add Gift", systemImage: "plus")
                     }
                 }
                 
 
             }
-            Text("Select an item")
+            Text("Select an gift")
             
         }
-        .sheet(isPresented: $showingAddItemView) {
-            AddItemView().environment(\.managedObjectContext, self.viewContext)
+        .sheet(isPresented: $showingAddGiftView) {
+            AddGiftView().environment(\.managedObjectContext, self.viewContext)
         }
     }
 
-    private func deleteItems(offsets: IndexSet) {
+    private func deleteGifts(offsets: IndexSet) {
         withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
+            offsets.map { gifts[$0] }.forEach(viewContext.delete)
 
             do {
                 try viewContext.save()
@@ -76,9 +76,9 @@ struct ContentView: View {
             }
         }
     }
-    private func deleteItem(item: Item) {
+    private func deleteGift(gift: Gift) {
         withAnimation {
-            viewContext.delete(item)
+            viewContext.delete(gift)
 
             do {
                 try viewContext.save()
@@ -92,7 +92,7 @@ struct ContentView: View {
 
 }
 
-private let itemFormatter: DateFormatter = {
+private let giftFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .short
     formatter.timeStyle = .medium

@@ -23,5 +23,5 @@
 
 - **Add a Gift**: Easily add gifts with details such as description, price, and recipient.
 - **View Gifts**: View a list of all the gifts you have added, sorted by latest added or customized filters.
-- **Edit and Delete**: Update gift details or remove items with simple gestures.
+- **Edit and Delete**: Update gift details or remove gifts with simple gestures.
 

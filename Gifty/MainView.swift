@@ -12,11 +12,11 @@ struct MainView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            // Item View
+            // Gift View
             ContentView()
                 .tabItem {
                     Image(systemName: "gift")
-                    Text("Items")
+                    Text("Gifts")
                 }
                 .tag(0)
             

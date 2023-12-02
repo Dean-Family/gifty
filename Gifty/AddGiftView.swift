@@ -1,5 +1,5 @@
 //
-//  AddItemView.swift
+//  AddGiftView.swift
 //  Gifty
 //
 //  Created by Gavin Dean on 10/17/23.
@@ -7,7 +7,7 @@
 import SwiftUI
 import CoreData
 
-struct AddItemView: View {
+struct AddGiftView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.presentationMode) var presentationMode
     
@@ -21,7 +21,7 @@ struct AddItemView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Event.date, ascending: true)]
     ) var events: FetchedResults<Event>
     
-    @State private var itemName: String = ""
+    @State private var giftName: String = ""
     @State private var selectedPerson: Person?
     @State private var selectedEvent: Event?
 
@@ -30,7 +30,7 @@ struct AddItemView: View {
         #if os(iOS)
         NavigationView {
             formContent
-                .navigationBarTitle("Add Item", displayMode: .inline)
+                .navigationBarTitle("Add Gift", displayMode: .inline)
         }
         #else
         formContent
@@ -40,8 +40,8 @@ struct AddItemView: View {
     
     var formContent: some View {
             VStack {
-                TextField("Item name", text: $itemName, onCommit: {
-                    addItem()
+                TextField("Gift name", text: $giftName, onCommit: {
+                    addGift()
                 })
                 .padding()
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
@@ -57,17 +57,17 @@ struct AddItemView: View {
                     }
                 }
                 Button("Save") {
-                    addItem()
+                    addGift()
                 }
             }
             .padding()
         }
     
-    private func addItem() {
-        let newItem = Item(context: viewContext)
-        newItem.name = itemName
-        newItem.person = selectedPerson
-        newItem.event = selectedEvent
+    private func addGift() {
+        let newGift = Gift(context: viewContext)
+        newGift.name = giftName
+        newGift.person = selectedPerson
+        newGift.event = selectedEvent
         
         do {
             try viewContext.save()
@@ -78,8 +78,8 @@ struct AddItemView: View {
     }
 }
 
-struct AddItemView_Previews: PreviewProvider {
+struct AddGiftView_Previews: PreviewProvider {
     static var previews: some View {
-        AddItemView()
+        AddGiftView()
     }
 }
