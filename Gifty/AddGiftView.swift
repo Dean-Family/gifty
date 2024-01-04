@@ -31,10 +31,13 @@ struct AddGiftView: View {
         NavigationView {
             formContent
                 .navigationBarTitle("Add Gift", displayMode: .inline)
+                .onAppear(perform: setDefaultSelections)
+                
         }
         #else
         formContent
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .onAppear(perform: setDefaultSelections)
         #endif
     }
     
@@ -61,6 +64,14 @@ struct AddGiftView: View {
                 }
             }
             .padding()
+        }
+    private func setDefaultSelections() {
+            if let firstPerson = persons.first {
+                selectedPerson = firstPerson
+            }
+            if let firstEvent = events.first {
+                selectedEvent = firstEvent
+            }
         }
     
     private func addGift() {
