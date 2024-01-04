@@ -22,7 +22,8 @@ struct ContentView: View {
             List {
                 ForEach(gifts) { gift in
                     NavigationLink {
-                        Text(gift.name ?? "Unknown")
+                        Text("\(gift.name ?? "Unknown")\n\(gift.person?.firstname ?? "Unknown") \(gift.person?.lastname ?? "?")\n\(gift.event?.name ?? "Unknown")")
+                        
                     } label: {
                         Text(gift.name ?? "Unknown")
                     }
