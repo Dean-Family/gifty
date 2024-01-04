@@ -6,7 +6,6 @@
 
 ## Features
 
-- **Cross-platform**: Works on both iOS and MacOS
 - **Cloud Sync**: Leverage the power of CloudKit for real-time synchronization
 - **Swift Only**: Entirely written in Swift, with no Objective-C dependencies
 - **One Codebase**: Unified codebase for maintaining phone and laptop applications
