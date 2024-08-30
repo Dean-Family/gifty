@@ -20,22 +20,49 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(gifts) { gift in
-                    NavigationLink {
-                        GiftDetailView(gift: gift)
-                    } label: {
-                        Text(gift.name ?? "Unknown")
-                    }
-                    .contextMenu { // Context menu for right-click actions
-                        Button(action: {
-                            deleteGift(gift: gift)
-                        }) {
-                            Text("Delete")
-                            Image(systemName: "trash")
+                Section(header: Text("Gifts").font(.headline)) {
+                    ForEach(gifts) { gift in
+                        NavigationLink {
+                            GiftDetailView(gift: gift)
+                        } label: {
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Text(gift.name ?? "Unknown")
+                                        .font(.headline)
+
+                                    if let person = gift.person, let event = gift.event {
+                                        Text("For \(person.firstname ?? "Unknown") \(person.lastname ?? "Unknown")")
+                                            .font(.subheadline)
+                                            .foregroundColor(.secondary)
+
+                                        Text("\(event.name ?? "Unknown") on \(event.date!, formatter: dateFormatter)")
+                                            .font(.subheadline)
+                                            .foregroundColor(.secondary)
+                                    } else if let person = gift.person {
+                                        Text("For \(person.firstname ?? "Unknown") \(person.lastname ?? "Unknown")")
+                                            .font(.subheadline)
+                                            .foregroundColor(.secondary)
+                                    } else if let event = gift.event {
+                                        Text("\(event.name ?? "Unknown") on \(event.date!, formatter: dateFormatter)")
+                                            .font(.subheadline)
+                                            .foregroundColor(.secondary)
+                                    }
+                                }
+                                Spacer()
+                            }
+                            .padding(.vertical, 5)
+                        }
+                        .contextMenu {
+                            Button(action: {
+                                deleteGift(gift: gift)
+                            }) {
+                                Text("Delete")
+                                Image(systemName: "trash")
+                            }
                         }
                     }
+                    .onDelete(perform: deleteGifts)
                 }
-                .onDelete(perform: deleteGifts)
             }
             .toolbar {
 #if os(iOS)
@@ -84,10 +111,10 @@ struct ContentView: View {
         }
     }
 }
-private let giftFormatter: DateFormatter = {
+
+private let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .short
-    formatter.timeStyle = .medium
     return formatter
 }()
 
