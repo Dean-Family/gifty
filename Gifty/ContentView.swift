@@ -22,19 +22,18 @@ struct ContentView: View {
             List {
                 ForEach(gifts) { gift in
                     NavigationLink {
-                        Text("\(gift.name ?? "Unknown")\n\(gift.person?.firstname ?? "Unknown") \(gift.person?.lastname ?? "?")\n\(gift.event?.name ?? "Unknown")")
-                        
+                        GiftDetailView(gift: gift)
                     } label: {
                         Text(gift.name ?? "Unknown")
                     }
                     .contextMenu { // Context menu for right-click actions
-                                Button(action: {
-                                    deleteGift(gift: gift)
-                                }) {
-                                    Text("Delete")
-                                    Image(systemName: "trash")
-                                }
-                            }
+                        Button(action: {
+                            deleteGift(gift: gift)
+                        }) {
+                            Text("Delete")
+                            Image(systemName: "trash")
+                        }
+                    }
                 }
                 .onDelete(perform: deleteGifts)
             }
@@ -45,18 +44,14 @@ struct ContentView: View {
                 }
 #endif
                 ToolbarItem(placement: .primaryAction) {
-                    Button(
-                        action: {
+                    Button(action: {
                         showingAddGiftView = true
                     }) {
                         Label("Add Gift", systemImage: "plus")
                     }
                 }
-                
-
             }
-            Text("Select an gift")
-            
+            Text("Select a gift")
         }
         .sheet(isPresented: $showingAddGiftView) {
             AddGiftView().environment(\.managedObjectContext, self.viewContext)
@@ -70,13 +65,12 @@ struct ContentView: View {
             do {
                 try viewContext.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
         }
     }
+
     private func deleteGift(gift: Gift) {
         withAnimation {
             viewContext.delete(gift)
@@ -84,15 +78,12 @@ struct ContentView: View {
             do {
                 try viewContext.save()
             } catch {
-                // Handle the error appropriately
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
         }
     }
-
 }
-
 private let giftFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .short

@@ -1,46 +1,48 @@
 //
-//  PersonDetailView.swift
+//  EventDetailView.swift
 //  Gifty
 //
 //  Created by Gavin Dean on 8/29/24.
 //
+
 import SwiftUI
 import CoreData
 
-struct PersonDetailView: View {
+struct EventDetailView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @State private var showingEditPersonView: Bool = false
+    @State private var showingEditEventView: Bool = false
 
-    @ObservedObject var person: Person
+    @ObservedObject var event: Event
 
     var body: some View {
         VStack {
-            Text(person.firstname ?? "Unknown")
+            Text(event.name ?? "Unknown")
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .padding()
 
-            Text(person.lastname ?? "Unknown")
+            Text("Event on \(event.date!, formatter: dateFormatter)")
                 .font(.title2)
                 .padding()
 
             Spacer()
         }
-        .navigationTitle("\(person.firstname ?? "Unknown") \(person.lastname ?? "Unknown")")
+        .navigationTitle(event.name ?? "Event")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button("Edit") {
-                    showingEditPersonView = true
+                    showingEditEventView = true
                 }
             }
         }
-        .sheet(isPresented: $showingEditPersonView) {
-            EditPersonView(person: person)
+        .sheet(isPresented: $showingEditEventView) {
+            EditEventView(event: event)
                 .environment(\.managedObjectContext, viewContext)
         }
     }
 }
+
 private let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .short

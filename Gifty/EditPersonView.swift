@@ -31,7 +31,6 @@ struct EditPersonView: View {
                             try viewContext.save()
                             presentationMode.wrappedValue.dismiss()
                         } catch {
-                            // Handle the error appropriately
                             print("Error saving person: \(error.localizedDescription)")
                         }
                     }
@@ -42,7 +41,6 @@ struct EditPersonView: View {
         }
     }
 }
-
 
 struct EditPersonView_Previews: PreviewProvider {
     static var previews: some View {
