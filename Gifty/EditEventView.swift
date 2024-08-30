@@ -30,8 +30,16 @@ struct EditEventView: View {
                         set: { event.date = $0 }
                     ), displayedComponents: .date)
                 }
-
-                Section {
+            }
+            .navigationTitle("Edit Event")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }
+                ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
                         do {
                             try viewContext.save()
@@ -42,10 +50,6 @@ struct EditEventView: View {
                     }
                 }
             }
-            .navigationTitle("Edit Event")
-        #if os(iOS)
-            .navigationBarTitleDisplayMode(.inline)
-            #endif
         }
     }
 }

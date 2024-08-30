@@ -41,7 +41,7 @@ struct AddPersonView: View {
     }
     
     var formContent: some View {
-        VStack {
+        VStack(spacing: 20) {
             TextField("Person first name", text: $personFirstName)
                 .padding()
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
@@ -50,17 +50,23 @@ struct AddPersonView: View {
                 .padding()
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
             
+            Divider()
+                .padding(.vertical)
+            
+        #if os(iOS)
             Button("Select from Contacts") {
                 showingContactPicker = true
             }
-        #if os(iOS)
+            .buttonStyle(BorderlessButtonStyle())
+            .foregroundColor(.blue)
+            .padding(.top)
             .sheet(isPresented: $showingContactPicker) {
                 ContactPickerView { contact in
                     personFirstName = contact.givenName
                     personLastName = contact.familyName
                 }
             }
-            #endif
+        #endif
         }
         .padding()
     }

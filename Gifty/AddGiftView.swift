@@ -67,16 +67,16 @@ struct AddGiftView: View {
                 }
             }
             
-        #if os(iOS)
-            Button("Select from Contacts") {
-                showingContactPicker = true
-            }
-            .sheet(isPresented: $showingContactPicker) {
-                ContactPickerView { contact in
-                    saveContactToCoreData(contact: contact)
-                }
-            }
-            #endif
+//        #if os(iOS)
+//            Button("Select from Contacts") {
+//                showingContactPicker = true
+//            }
+//            .sheet(isPresented: $showingContactPicker) {
+//                ContactPickerView { contact in
+//                    saveContactToCoreData(contact: contact)
+//                }
+//            }
+//            #endif
             
             Picker("Select Event", selection: $selectedEvent) {
                 ForEach(events, id: \.self) { event in

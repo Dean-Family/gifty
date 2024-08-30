@@ -57,8 +57,16 @@ struct EditGiftView: View {
                         }
                     }
                 }
-
-                Section {
+            }
+            .navigationTitle("Edit Gift")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }
+                ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
                         do {
                             try viewContext.save()
@@ -69,10 +77,6 @@ struct EditGiftView: View {
                     }
                 }
             }
-            .navigationTitle("Edit Gift")
-        #if os(iOS)
-            .navigationBarTitleDisplayMode(.inline)
-            #endif
         }
     }
 }

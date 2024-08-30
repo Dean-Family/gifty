@@ -15,10 +15,6 @@ struct PersonDetailView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            Text(fullName(for: person))
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding(.bottom, 10)
 
             Spacer()
         }

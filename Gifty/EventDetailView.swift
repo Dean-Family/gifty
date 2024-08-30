@@ -16,11 +16,7 @@ struct EventDetailView: View {
 
     var body: some View {
         VStack {
-            Text(event.name ?? "Unknown")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding()
-
+            Spacer()
             Text("Event on \(event.date!, formatter: dateFormatter)")
                 .font(.title2)
                 .padding()

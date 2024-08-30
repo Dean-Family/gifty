@@ -16,10 +16,6 @@ struct GiftDetailView: View {
 
     var body: some View {
         VStack {
-            Text(gift.name ?? "Unknown")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding()
 
             if let person = gift.person {
                 Text("\(person.firstname ?? "Unknown") \(person.lastname ?? "?")")

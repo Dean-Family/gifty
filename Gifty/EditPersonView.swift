@@ -24,8 +24,16 @@ struct EditPersonView: View {
                 Section(header: Text("Last Name")) {
                     TextField("Last Name", text: $person.lastname.bound)
                 }
-
-                Section {
+            }
+            .navigationTitle("Edit Person")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }
+                ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
                         do {
                             try viewContext.save()
@@ -36,10 +44,6 @@ struct EditPersonView: View {
                     }
                 }
             }
-            .navigationTitle("Edit Person")
-        #if os(iOS)
-            .navigationBarTitleDisplayMode(.inline)
-            #endif
         }
     }
 }
@@ -62,9 +66,3 @@ extension Optional where Wrapped == String {
         set { self = newValue }
     }
 }
-
-private let dateFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    return formatter
-}()
