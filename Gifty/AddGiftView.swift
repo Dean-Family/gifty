@@ -32,6 +32,18 @@ struct AddGiftView: View {
         NavigationView {
             formContent
                 .navigationBarTitle("Add Gift", displayMode: .inline)
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("Cancel") {
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                    }
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button("Save") {
+                            addGift()
+                        }
+                    }
+                }
                 .onAppear(perform: setDefaultSelections)
         }
         #else
@@ -55,10 +67,10 @@ struct AddGiftView: View {
                 }
             }
             
+        #if os(iOS)
             Button("Select from Contacts") {
                 showingContactPicker = true
             }
-        #if os(iOS)
             .sheet(isPresented: $showingContactPicker) {
                 ContactPickerView { contact in
                     saveContactToCoreData(contact: contact)
@@ -70,10 +82,6 @@ struct AddGiftView: View {
                 ForEach(events, id: \.self) { event in
                     Text(event.name ?? "Unknown").tag(event as Event?)
                 }
-            }
-            
-            Button("Save") {
-                addGift()
             }
         }
         .padding()

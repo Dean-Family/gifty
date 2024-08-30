@@ -25,6 +25,18 @@ struct AddEventView: View {
         NavigationView {
             formContent
                 .navigationBarTitle("Add Event", displayMode: .inline)
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("Cancel") {
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                    }
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button("Save") {
+                            addEvent()
+                        }
+                    }
+                }
         }
         #else
         formContent
@@ -51,10 +63,6 @@ struct AddEventView: View {
                 }
             }
         #endif
-
-            Button("Save") {
-                addEvent()
-            }
         }
         .padding()
     }

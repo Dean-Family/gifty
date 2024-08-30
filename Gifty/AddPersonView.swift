@@ -21,6 +21,18 @@ struct AddPersonView: View {
         NavigationView {
             formContent
                 .navigationBarTitle("Add Person", displayMode: .inline)
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("Cancel") {
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                    }
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button("Save") {
+                            addPerson()
+                        }
+                    }
+                }
         }
         #else
         formContent
@@ -30,17 +42,13 @@ struct AddPersonView: View {
     
     var formContent: some View {
         VStack {
-            TextField("Person first name", text: $personFirstName, onCommit: {
-                addPerson()
-            })
-            .padding()
-            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
+            TextField("Person first name", text: $personFirstName)
+                .padding()
+                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
             
-            TextField("Person last name", text: $personLastName, onCommit: {
-                addPerson()
-            })
-            .padding()
-            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
+            TextField("Person last name", text: $personLastName)
+                .padding()
+                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
             
             Button("Select from Contacts") {
                 showingContactPicker = true
@@ -53,10 +61,6 @@ struct AddPersonView: View {
                 }
             }
             #endif
-            
-            Button("Save") {
-                addPerson()
-            }
         }
         .padding()
     }
@@ -75,7 +79,7 @@ struct AddPersonView: View {
     }
 }
 
-        #if os(iOS)
+#if os(iOS)
 struct ContactPickerView: UIViewControllerRepresentable {
     var didSelectContact: (CNContact) -> Void
     
@@ -103,8 +107,8 @@ struct ContactPickerView: UIViewControllerRepresentable {
         }
     }
 }
-
 #endif
+
 #Preview {
     AddPersonView()
 }
