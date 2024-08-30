@@ -14,6 +14,16 @@ struct EditGiftView: View {
 
     @ObservedObject var gift: Gift
 
+    @FetchRequest(
+        entity: Person.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \Person.lastname, ascending: true)]
+    ) private var people: FetchedResults<Person>
+
+    @FetchRequest(
+        entity: Event.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \Event.date, ascending: true)]
+    ) private var events: FetchedResults<Event>
+
     var body: some View {
         NavigationView {
             Form {
@@ -24,13 +34,28 @@ struct EditGiftView: View {
                     ))
                 }
 
-                // Additional sections for other attributes (like person, event, etc.)
-                // Example:
                 Section(header: Text("Person")) {
-                    TextField("Person", text: Binding(
-                        get: { "\(gift.person?.firstname ?? "") \(gift.person?.lastname ?? "")" },
-                        set: { _ in }
-                    ))
+                    Picker("Select Person", selection: Binding(
+                        get: { gift.person ?? people.first },
+                        set: { gift.person = $0 }
+                    )) {
+                        ForEach(people, id: \.self) { person in
+                            Text("\(person.firstname ?? "") \(person.lastname ?? "")")
+                                .tag(person as Person?)
+                        }
+                    }
+                }
+
+                Section(header: Text("Event")) {
+                    Picker("Select Event", selection: Binding(
+                        get: { gift.event ?? events.first },
+                        set: { gift.event = $0 }
+                    )) {
+                        ForEach(events, id: \.self) { event in
+                            Text("\(event.name ?? "Unknown Event") on \(event.date!, formatter: dateFormatter)")
+                                .tag(event as Event?)
+                        }
+                    }
                 }
 
                 Section {
@@ -49,3 +74,9 @@ struct EditGiftView: View {
         }
     }
 }
+
+private let dateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .short
+    return formatter
+}()

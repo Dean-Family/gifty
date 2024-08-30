@@ -12,22 +12,7 @@ struct GiftDetailView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var gift: Gift
 
-    @FetchRequest private var relatedPerson: FetchedResults<Person>
-    @FetchRequest private var relatedEvent: FetchedResults<Event>
-
-    init(gift: Gift) {
-        self.gift = gift
-        self._relatedPerson = FetchRequest(
-            entity: Person.entity(),
-            sortDescriptors: [],
-            predicate: NSPredicate(format: "SELF == %@", gift.person ?? Person())
-        )
-        self._relatedEvent = FetchRequest(
-            entity: Event.entity(),
-            sortDescriptors: [],
-            predicate: NSPredicate(format: "SELF == %@", gift.event ?? Event())
-        )
-    }
+    @State private var showingEditGiftView = false
 
     var body: some View {
         VStack {
@@ -36,13 +21,13 @@ struct GiftDetailView: View {
                 .fontWeight(.bold)
                 .padding()
 
-            if let person = relatedPerson.first {
+            if let person = gift.person {
                 Text("\(person.firstname ?? "Unknown") \(person.lastname ?? "?")")
                     .font(.title2)
                     .padding()
             }
 
-            if let event = relatedEvent.first {
+            if let event = gift.event {
                 Text("Event on \(event.date!, formatter: dateFormatter)")
                     .font(.title2)
                     .padding()
@@ -53,6 +38,16 @@ struct GiftDetailView: View {
         }
         .navigationTitle(gift.name ?? "Gift")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button("Edit Gift") {
+                    showingEditGiftView = true
+                }
+            }
+        }
+        .sheet(isPresented: $showingEditGiftView) {
+            EditGiftView(gift: gift).environment(\.managedObjectContext, viewContext)
+        }
     }
 }
 

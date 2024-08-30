@@ -59,7 +59,6 @@ struct EventView: View {
                     }
                 }
             }
-            .navigationTitle("Events")
             Text("Select an event")
         }
         .sheet(isPresented: $showingAddEventView) {
