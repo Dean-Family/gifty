@@ -6,6 +6,7 @@
 //
 import SwiftUI
 import CoreData
+import ContactsUI
 
 struct AddGiftView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -24,15 +25,14 @@ struct AddGiftView: View {
     @State private var giftName: String = ""
     @State private var selectedPerson: Person?
     @State private var selectedEvent: Event?
-
-
+    @State private var showingContactPicker = false
+    
     var body: some View {
         #if os(iOS)
         NavigationView {
             formContent
                 .navigationBarTitle("Add Gift", displayMode: .inline)
                 .onAppear(perform: setDefaultSelections)
-                
         }
         #else
         formContent
@@ -42,37 +42,62 @@ struct AddGiftView: View {
     }
     
     var formContent: some View {
-            VStack {
-                TextField("Gift name", text: $giftName, onCommit: {
-                    addGift()
-                })
-                .padding()
-                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
-                Picker("Select Person", selection: $selectedPerson) {
-                    ForEach(persons, id: \.self) { person in
-                        Text("\(person.firstname ?? "Unknown") \(person.lastname ?? "")").tag(person as Person?)
-                    }
-                }
-
-                Picker("Select Event", selection: $selectedEvent) {
-                    ForEach(events, id: \.self) { event in
-                        Text(event.name ?? "Unknown").tag(event as Event?)
-                    }
-                }
-                Button("Save") {
-                    addGift()
-                }
-            }
+        VStack {
+            TextField("Gift name", text: $giftName, onCommit: {
+                addGift()
+            })
             .padding()
+            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
+            
+            Picker("Select Person", selection: $selectedPerson) {
+                ForEach(persons, id: \.self) { person in
+                    Text("\(person.firstname ?? "Unknown") \(person.lastname ?? "")").tag(person as Person?)
+                }
+            }
+            
+            Button("Select from Contacts") {
+                showingContactPicker = true
+            }
+            .sheet(isPresented: $showingContactPicker) {
+                ContactPickerView { contact in
+                    saveContactToCoreData(contact: contact)
+                }
+            }
+            
+            Picker("Select Event", selection: $selectedEvent) {
+                ForEach(events, id: \.self) { event in
+                    Text(event.name ?? "Unknown").tag(event as Event?)
+                }
+            }
+            
+            Button("Save") {
+                addGift()
+            }
         }
+        .padding()
+    }
+
     private func setDefaultSelections() {
-            if let firstPerson = persons.first {
-                selectedPerson = firstPerson
-            }
-            if let firstEvent = events.first {
-                selectedEvent = firstEvent
-            }
+        if let firstPerson = persons.first {
+            selectedPerson = firstPerson
         }
+        if let firstEvent = events.first {
+            selectedEvent = firstEvent
+        }
+    }
+    
+    private func saveContactToCoreData(contact: CNContact) {
+        let newPerson = Person(context: viewContext)
+        newPerson.firstname = contact.givenName
+        newPerson.lastname = contact.familyName
+        
+        do {
+            try viewContext.save()
+            selectedPerson = newPerson
+        } catch {
+            // Handle the error
+        }
+    }
     
     private func addGift() {
         let newGift = Gift(context: viewContext)
@@ -85,6 +110,34 @@ struct AddGiftView: View {
             presentationMode.wrappedValue.dismiss()
         } catch {
             // handle the Core Data error
+        }
+    }
+}
+
+struct ContactPickerView: UIViewControllerRepresentable {
+    var didSelectContact: (CNContact) -> Void
+    
+    func makeUIViewController(context: Context) -> CNContactPickerViewController {
+        let picker = CNContactPickerViewController()
+        picker.delegate = context.coordinator
+        return picker
+    }
+    
+    func updateUIViewController(_ uiViewController: CNContactPickerViewController, context: Context) {}
+    
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(didSelectContact: didSelectContact)
+    }
+    
+    class Coordinator: NSObject, CNContactPickerDelegate {
+        var didSelectContact: (CNContact) -> Void
+        
+        init(didSelectContact: @escaping (CNContact) -> Void) {
+            self.didSelectContact = didSelectContact
+        }
+        
+        func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
+            didSelectContact(contact)
         }
     }
 }
