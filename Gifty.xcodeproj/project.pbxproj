@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B076F122C818C9B004CDEAD /* EditPersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B076F112C818C9B004CDEAD /* EditPersonView.swift */; };
+		2B076F142C819174004CDEAD /* PersonDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B076F132C819174004CDEAD /* PersonDetailView.swift */; };
 		2B1B642C2B19BA190074FACE /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B642B2B19BA190074FACE /* EventView.swift */; };
 		2B1B642E2B19BCD30074FACE /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B642D2B19BCD30074FACE /* AddEventView.swift */; };
 		2B1B64302B19C6090074FACE /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B642F2B19C6090074FACE /* PersonView.swift */; };
@@ -43,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B076F112C818C9B004CDEAD /* EditPersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPersonView.swift; sourceTree = "<group>"; };
+		2B076F132C819174004CDEAD /* PersonDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailView.swift; sourceTree = "<group>"; };
 		2B1B642B2B19BA190074FACE /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		2B1B642D2B19BCD30074FACE /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
 		2B1B642F2B19C6090074FACE /* PersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
@@ -126,7 +130,9 @@
 				2B1B642B2B19BA190074FACE /* EventView.swift */,
 				2B1B642D2B19BCD30074FACE /* AddEventView.swift */,
 				2B1B642F2B19C6090074FACE /* PersonView.swift */,
+				2B076F132C819174004CDEAD /* PersonDetailView.swift */,
 				2B1B64312B19C9420074FACE /* AddPersonView.swift */,
+				2B076F112C818C9B004CDEAD /* EditPersonView.swift */,
 			);
 			path = Gifty;
 			sourceTree = "<group>";
@@ -287,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BD5579C2A5A9635000DB9F8 /* GiftyApp.swift in Sources */,
+				2B076F142C819174004CDEAD /* PersonDetailView.swift in Sources */,
 				2B26E4022AEA3E68005F5278 /* MainView.swift in Sources */,
 				2B5A1CBA2ADFB523005BC16E /* Documentation.docc in Sources */,
 				2BD557A12A5A9635000DB9F8 /* Gifty.xcdatamodeld in Sources */,
@@ -297,6 +304,7 @@
 				2BD5579E2A5A9635000DB9F8 /* Persistence.swift in Sources */,
 				2B5A1CB82ADFA6A2005BC16E /* AddGiftView.swift in Sources */,
 				2B1B642C2B19BA190074FACE /* EventView.swift in Sources */,
+				2B076F122C818C9B004CDEAD /* EditPersonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

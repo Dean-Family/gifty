@@ -22,11 +22,14 @@ struct PersonView: View {
             List {
                 ForEach(persons) { person in
                     NavigationLink {
-                        Text(person.firstname ?? "Unknown")
-                        Text((person.lastname ?? "Unknown"))
+                        PersonDetailView(person: person)
                     } label: {
-                        Text(person.firstname ?? "Unknown")
-                        Text(person.lastname ?? "Unknown")
+                        VStack(alignment: .leading) {
+                            Text(person.firstname ?? "Unknown")
+                            Text(person.lastname ?? "Unknown")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                        }
                     }
                     .contextMenu { // Context menu for right-click actions
                                 Button(action: {
