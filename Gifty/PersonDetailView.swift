@@ -24,7 +24,9 @@ struct PersonDetailView: View {
         }
         .padding()
         .navigationTitle(fullName(for: person))
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button("Edit") {

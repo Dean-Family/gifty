@@ -28,7 +28,9 @@ struct EventDetailView: View {
             Spacer()
         }
         .navigationTitle(event.name ?? "Event")
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button("Edit") {

@@ -37,7 +37,9 @@ struct GiftDetailView: View {
             Spacer()
         }
         .navigationTitle(gift.name ?? "Gift")
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button("Edit Gift") {

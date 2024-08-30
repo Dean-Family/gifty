@@ -44,9 +44,11 @@ struct PersonView: View {
                 }
             }
             .toolbar {
+        #if os(iOS)
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
+                #endif
                 ToolbarItem(placement: .primaryAction) {
                     Button(action: {
                         showingAddPersonView = true

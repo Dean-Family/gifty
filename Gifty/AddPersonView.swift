@@ -45,12 +45,14 @@ struct AddPersonView: View {
             Button("Select from Contacts") {
                 showingContactPicker = true
             }
+        #if os(iOS)
             .sheet(isPresented: $showingContactPicker) {
                 ContactPickerView { contact in
                     personFirstName = contact.givenName
                     personLastName = contact.familyName
                 }
             }
+            #endif
             
             Button("Save") {
                 addPerson()
@@ -73,6 +75,7 @@ struct AddPersonView: View {
     }
 }
 
+        #if os(iOS)
 struct ContactPickerView: UIViewControllerRepresentable {
     var didSelectContact: (CNContact) -> Void
     
@@ -101,6 +104,7 @@ struct ContactPickerView: UIViewControllerRepresentable {
     }
 }
 
+#endif
 #Preview {
     AddPersonView()
 }

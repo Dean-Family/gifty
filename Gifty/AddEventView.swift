@@ -15,7 +15,9 @@ struct AddEventView: View {
 
     @State private var eventName: String = ""
     @State private var eventDate: Date = Date()
+        #if os(iOS)
     @State private var selectedContact: CNContact?
+        #endif
     @State private var showingContactPicker = false
 
     var body: some View {
@@ -42,11 +44,13 @@ struct AddEventView: View {
             Button("Get Birthday From Contacts") {
                 showingContactPicker = true
             }
+        #if os(iOS)
             .sheet(isPresented: $showingContactPicker) {
                 ContactPickerView { contact in
                     handleSelectedContact(contact: contact)
                 }
             }
+        #endif
 
             Button("Save") {
                 addEvent()
@@ -55,6 +59,7 @@ struct AddEventView: View {
         .padding()
     }
 
+        #if os(iOS)
     private func handleSelectedContact(contact: CNContact) {
         selectedContact = contact
 
@@ -89,6 +94,7 @@ struct AddEventView: View {
             }
         }
     }
+        #endif
 
     private func addEvent() {
         let newEvent = Event(context: viewContext)

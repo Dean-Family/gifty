@@ -70,7 +70,9 @@ struct EditGiftView: View {
                 }
             }
             .navigationTitle("Edit Gift")
+        #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
         }
     }
 }

@@ -37,7 +37,9 @@ struct EditPersonView: View {
                 }
             }
             .navigationTitle("Edit Person")
+        #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
         }
     }
 }

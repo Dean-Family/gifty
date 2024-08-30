@@ -58,11 +58,13 @@ struct AddGiftView: View {
             Button("Select from Contacts") {
                 showingContactPicker = true
             }
+        #if os(iOS)
             .sheet(isPresented: $showingContactPicker) {
                 ContactPickerView { contact in
                     saveContactToCoreData(contact: contact)
                 }
             }
+            #endif
             
             Picker("Select Event", selection: $selectedEvent) {
                 ForEach(events, id: \.self) { event in
@@ -86,6 +88,7 @@ struct AddGiftView: View {
         }
     }
     
+        #if os(iOS)
     private func saveContactToCoreData(contact: CNContact) {
         let newPerson = Person(context: viewContext)
         newPerson.firstname = contact.givenName
@@ -98,6 +101,7 @@ struct AddGiftView: View {
             // Handle the error
         }
     }
+    #endif
     
     private func addGift() {
         let newGift = Gift(context: viewContext)

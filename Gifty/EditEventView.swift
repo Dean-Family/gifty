@@ -43,7 +43,9 @@ struct EditEventView: View {
                 }
             }
             .navigationTitle("Edit Event")
+        #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
         }
     }
 }
