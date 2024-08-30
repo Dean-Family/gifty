@@ -14,19 +14,16 @@ struct PersonDetailView: View {
     @ObservedObject var person: Person
 
     var body: some View {
-        VStack {
-            Text(person.firstname ?? "Unknown")
+        VStack(alignment: .leading, spacing: 20) {
+            Text(fullName(for: person))
                 .font(.largeTitle)
                 .fontWeight(.bold)
-                .padding()
-
-            Text(person.lastname ?? "Unknown")
-                .font(.title2)
-                .padding()
+                .padding(.bottom, 10)
 
             Spacer()
         }
-        .navigationTitle("\(person.firstname ?? "Unknown") \(person.lastname ?? "Unknown")")
+        .padding()
+        .navigationTitle(fullName(for: person))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
@@ -40,9 +37,16 @@ struct PersonDetailView: View {
                 .environment(\.managedObjectContext, viewContext)
         }
     }
+
+    private func fullName(for person: Person) -> String {
+        let firstName = person.firstname ?? "Unknown"
+        let lastName = person.lastname ?? "Unknown"
+        return "\(firstName) \(lastName)"
+    }
 }
+
 private let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.dateStyle = .short
+    formatter.dateStyle = .medium
     return formatter
 }()
