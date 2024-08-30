@@ -114,34 +114,6 @@ struct AddGiftView: View {
     }
 }
 
-struct ContactPickerView: UIViewControllerRepresentable {
-    var didSelectContact: (CNContact) -> Void
-    
-    func makeUIViewController(context: Context) -> CNContactPickerViewController {
-        let picker = CNContactPickerViewController()
-        picker.delegate = context.coordinator
-        return picker
-    }
-    
-    func updateUIViewController(_ uiViewController: CNContactPickerViewController, context: Context) {}
-    
-    func makeCoordinator() -> Coordinator {
-        return Coordinator(didSelectContact: didSelectContact)
-    }
-    
-    class Coordinator: NSObject, CNContactPickerDelegate {
-        var didSelectContact: (CNContact) -> Void
-        
-        init(didSelectContact: @escaping (CNContact) -> Void) {
-            self.didSelectContact = didSelectContact
-        }
-        
-        func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
-            didSelectContact(contact)
-        }
-    }
-}
-
 struct AddGiftView_Previews: PreviewProvider {
     static var previews: some View {
         AddGiftView()

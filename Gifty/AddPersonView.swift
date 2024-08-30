@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import CoreData
+import ContactsUI
 
 struct AddPersonView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.presentationMode) var presentationMode
     @State private var personFirstName: String = ""
     @State private var personLastName: String = ""
+    @State private var showingContactPicker = false
 
     var body: some View {
         #if os(iOS)
@@ -26,23 +29,35 @@ struct AddPersonView: View {
     }
     
     var formContent: some View {
-            VStack {
-                TextField("Person first name", text: $personFirstName, onCommit: {
-                    addPerson()
-                })
-                .padding()
-                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
-                TextField("Person last name", text: $personLastName, onCommit: {
-                    addPerson()
-                })
-                .padding()
-                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
-                Button("Save") {
-                    addPerson()
+        VStack {
+            TextField("Person first name", text: $personFirstName, onCommit: {
+                addPerson()
+            })
+            .padding()
+            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
+            
+            TextField("Person last name", text: $personLastName, onCommit: {
+                addPerson()
+            })
+            .padding()
+            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
+            
+            Button("Select from Contacts") {
+                showingContactPicker = true
+            }
+            .sheet(isPresented: $showingContactPicker) {
+                ContactPickerView { contact in
+                    personFirstName = contact.givenName
+                    personLastName = contact.familyName
                 }
             }
-            .padding()
+            
+            Button("Save") {
+                addPerson()
+            }
         }
+        .padding()
+    }
     
     private func addPerson() {
         let newPerson = Person(context: viewContext)
@@ -54,6 +69,34 @@ struct AddPersonView: View {
             presentationMode.wrappedValue.dismiss()
         } catch {
             // handle the Core Data error
+        }
+    }
+}
+
+struct ContactPickerView: UIViewControllerRepresentable {
+    var didSelectContact: (CNContact) -> Void
+    
+    func makeUIViewController(context: Context) -> CNContactPickerViewController {
+        let picker = CNContactPickerViewController()
+        picker.delegate = context.coordinator
+        return picker
+    }
+    
+    func updateUIViewController(_ uiViewController: CNContactPickerViewController, context: Context) {}
+    
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(didSelectContact: didSelectContact)
+    }
+    
+    class Coordinator: NSObject, CNContactPickerDelegate {
+        var didSelectContact: (CNContact) -> Void
+        
+        init(didSelectContact: @escaping (CNContact) -> Void) {
+            self.didSelectContact = didSelectContact
+        }
+        
+        func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
+            didSelectContact(contact)
         }
     }
 }
