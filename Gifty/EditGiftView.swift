@@ -24,6 +24,10 @@ struct EditGiftView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Event.date, ascending: true)]
     ) private var events: FetchedResults<Event>
 
+    @State private var showingStatusModal = false  // State for showing modal
+    
+    let statuses = ["Idea", "Planned", "Reserved", "Ordered", "Shipped", "Received", "Wrapped", "Delivered", "Given", "Opened", "Thanked", "Used", "Exchanged", "Returned", "Re-Gifted", "Expired", "Cancelled", "On Hold", "Pending", "Not Applicable"]
+    
     var body: some View {
         NavigationView {
             Form {
@@ -57,6 +61,57 @@ struct EditGiftView: View {
                         }
                     }
                 }
+
+                Section(header: Text("Location")) {
+                    TextField("Location", text: Binding(
+                        get: { gift.location ?? "" },
+                        set: { gift.location = $0 }
+                    ))
+                }
+
+                Section(header: Text("Price (in Dollars)")) {
+                    TextField("Price", text: Binding(
+                        get: { formatCentsToDollars(gift.cents) },
+                        set: { gift.cents = convertDollarsToCents($0) }
+                    ))
+                    .keyboardType(.decimalPad)
+                }
+
+                Section(header: Text("Item Description")) {
+                    TextEditor(text: Binding(
+                        get: { gift.item_description ?? "" },
+                        set: { gift.item_description = $0 }
+                    ))
+                    .frame(height: 100)
+                }
+
+                Section(header: Text("Link")) {
+                    TextField("Link", text: Binding(
+                        get: { gift.link ?? "" },
+                        set: { gift.link = $0 }
+                    ))
+                    .keyboardType(.URL)
+                    .autocapitalization(.none)
+                }
+
+                Section(header: Text("Status")) {
+                    Button(action: {
+                        showingStatusModal = true
+                    }) {
+                        HStack {
+                            Text("Status")
+                            Spacer()
+                            Text(gift.status ?? "Idea")
+                                .foregroundColor(.gray)
+                        }
+                    }
+                    .sheet(isPresented: $showingStatusModal) {
+                        StatusSelectionModal(selectedStatus: Binding(
+                            get: { gift.status ?? "Idea" },
+                            set: { gift.status = $0 }
+                        ), isPresented: $showingStatusModal, statuses: statuses)
+                    }
+                }
             }
             .navigationTitle("Edit Gift")
             .navigationBarTitleDisplayMode(.inline)
@@ -78,6 +133,24 @@ struct EditGiftView: View {
                 }
             }
         }
+    }
+
+    // Helper function to format the cents to dollars
+    private func formatCentsToDollars(_ cents: Int64) -> String {
+        let dollars = Double(cents) / 100.0
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencySymbol = ""
+        return formatter.string(from: NSNumber(value: dollars)) ?? "$0.00"
+    }
+
+    // Helper function to convert dollars to cents
+    private func convertDollarsToCents(_ dollars: String) -> Int64 {
+        let cleanedDollars = dollars.replacingOccurrences(of: "$", with: "").trimmingCharacters(in: .whitespaces)
+        if let dollarValue = Double(cleanedDollars) {
+            return Int64(dollarValue * 100)
+        }
+        return 0
     }
 }
 
