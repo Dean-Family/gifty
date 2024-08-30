@@ -20,27 +20,30 @@ struct EventView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(events) { event in
-                    NavigationLink {
-                        EventDetailView(event: event)
-                    } label: {
-                        VStack(alignment: .leading) {
-                            Text(event.date!, formatter: dateFormatter)
-                            Text(event.name ?? "Unknown")
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
+                Section(header: Text("Events").font(.headline)) {
+                    ForEach(events) { event in
+                        NavigationLink(destination: EventDetailView(event: event)) {
+                            VStack(alignment: .leading, spacing: 5) {
+                                Text(event.name ?? "Unknown")
+                                    .font(.headline)
+                                    .foregroundColor(.primary)
+                                Text(event.date!, formatter: dateFormatter)
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                            }
+                            .padding(.vertical, 5)
+                        }
+                        .contextMenu {
+                            Button(action: {
+                                deleteEvent(event: event)
+                            }) {
+                                Text("Delete")
+                                Image(systemName: "trash")
+                            }
                         }
                     }
-                    .contextMenu {
-                        Button(action: {
-                            deleteEvent(event: event)
-                        }) {
-                            Text("Delete")
-                            Image(systemName: "trash")
-                        }
-                    }
+                    .onDelete(perform: deleteEvents)
                 }
-                .onDelete(perform: deleteEvents)
             }
             .toolbar {
 #if os(iOS)
@@ -56,6 +59,7 @@ struct EventView: View {
                     }
                 }
             }
+            .navigationTitle("Events")
             Text("Select an event")
         }
         .sheet(isPresented: $showingAddEventView) {
@@ -89,9 +93,10 @@ struct EventView: View {
         }
     }
 }
+
 private let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.dateStyle = .short
+    formatter.dateStyle = .medium
     return formatter
 }()
 
