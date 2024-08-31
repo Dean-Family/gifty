@@ -30,10 +30,16 @@ struct AddGiftView: View {
     @State private var priceInDollars: String = ""
     @State private var itemDescription: String = ""
     @State private var link: String = ""
-    @State private var status: String = "Idea"  // Default status
-    @State private var showingStatusModal = false  // State for showing modal
-    
+    @State private var status: String = "Idea"
+    @State private var showingStatusModal = false
+
     let statuses = ["Idea", "Planned", "Reserved", "Ordered", "Shipped", "Received", "Wrapped", "Delivered", "Given", "Opened", "Thanked", "Used", "Exchanged", "Returned", "Re-Gifted", "Expired", "Cancelled", "On Hold", "Pending", "Not Applicable"]
+
+    // Initializer accepting optional Person and Event
+    init(person: Person? = nil, event: Event? = nil) {
+        _selectedPerson = State(initialValue: person)
+        _selectedEvent = State(initialValue: event)
+    }
     
     var body: some View {
         #if os(iOS)
@@ -52,12 +58,10 @@ struct AddGiftView: View {
                         }
                     }
                 }
-                .onAppear(perform: setDefaultSelections)
         }
         #else
         formContent
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .onAppear(perform: setDefaultSelections)
         #endif
     }
     
@@ -74,13 +78,15 @@ struct AddGiftView: View {
                             .tag(person as Person?)
                     }
                 }
-                
+                .pickerStyle(MenuPickerStyle()) // Use a more compact picker style
+
                 Picker("Select Event", selection: $selectedEvent) {
                     ForEach(events, id: \.self) { event in
                         Text(event.name ?? "Unknown")
                             .tag(event as Event?)
                     }
                 }
+                .pickerStyle(MenuPickerStyle()) // Use a more compact picker style
                 
                 TextField("Location", text: $location)
                     .padding()
@@ -122,15 +128,6 @@ struct AddGiftView: View {
             .padding()
         }
     }
-
-    private func setDefaultSelections() {
-        if let firstPerson = persons.first {
-            selectedPerson = firstPerson
-        }
-        if let firstEvent = events.first {
-            selectedEvent = firstEvent
-        }
-    }
     
     private func addGift() {
         let newGift = Gift(context: viewContext)
@@ -160,40 +157,21 @@ struct AddGiftView: View {
     }
 }
 
-struct StatusSelectionModal: View {
-    @Binding var selectedStatus: String
-    @Binding var isPresented: Bool  // Binding to control the sheet's visibility
-    let statuses: [String]
-    
-    var body: some View {
-        NavigationView {
-            List {
-                ForEach(statuses, id: \.self) { status in
-                    Button(action: {
-                        selectedStatus = status
-                        isPresented = false  // Dismiss the sheet when a status is selected
-                    }) {
-                        HStack {
-                            Text(status)
-                            Spacer()
-                            if selectedStatus == status {
-                                Image(systemName: "checkmark")
-                                    .foregroundColor(.blue)
-                            }
-                        }
-                    }
-                }
-            }
-            .navigationTitle("Select Status")
-            .navigationBarItems(trailing: Button("Done") {
-                isPresented = false  // Dismiss the sheet when "Done" is tapped
-            })
-        }
-    }
-}
-
 struct AddGiftView_Previews: PreviewProvider {
     static var previews: some View {
         AddGiftView()
+    }
+}
+
+extension Event {
+    static func all(viewContext: NSManagedObjectContext) -> [Event] {
+        let fetchRequest: NSFetchRequest<Event> = Event.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Event.date, ascending: true)]
+        
+        do {
+            return try viewContext.fetch(fetchRequest)
+        } catch {
+            return []
+        }
     }
 }

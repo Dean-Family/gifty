@@ -29,6 +29,7 @@
 		2BD557B32A5A9636000DB9F8 /* GiftyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD557B22A5A9636000DB9F8 /* GiftyTests.swift */; };
 		2BD557BD2A5A9636000DB9F8 /* GiftyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD557BC2A5A9636000DB9F8 /* GiftyUITests.swift */; };
 		2BD557BF2A5A9636000DB9F8 /* GiftyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD557BE2A5A9636000DB9F8 /* GiftyUITestsLaunchTests.swift */; };
+		2BE705A82C8283C40028B7F0 /* StatusSelectionModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE705A72C8283C40028B7F0 /* StatusSelectionModal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		2BD557B82A5A9636000DB9F8 /* GiftyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiftyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BD557BC2A5A9636000DB9F8 /* GiftyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftyUITests.swift; sourceTree = "<group>"; };
 		2BD557BE2A5A9636000DB9F8 /* GiftyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftyUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2BE705A72C8283C40028B7F0 /* StatusSelectionModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusSelectionModal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 				2B076F112C818C9B004CDEAD /* EditPersonView.swift */,
 				2B076F192C819BC5004CDEAD /* EventDetailView.swift */,
 				2B076F1B2C819C11004CDEAD /* EditEventView.swift */,
+				2BE705A72C8283C40028B7F0 /* StatusSelectionModal.swift */,
 			);
 			path = Gifty;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				2BD5579C2A5A9635000DB9F8 /* GiftyApp.swift in Sources */,
 				2B076F142C819174004CDEAD /* PersonDetailView.swift in Sources */,
 				2B26E4022AEA3E68005F5278 /* MainView.swift in Sources */,
+				2BE705A82C8283C40028B7F0 /* StatusSelectionModal.swift in Sources */,
 				2B076F182C819A21004CDEAD /* EditGiftView.swift in Sources */,
 				2B076F162C8199EE004CDEAD /* GiftDetailView.swift in Sources */,
 				2B5A1CBA2ADFB523005BC16E /* Documentation.docc in Sources */,
