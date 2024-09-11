@@ -7,14 +7,13 @@
 
 import SwiftUI
 
+@available(iOS 17, *)
 @main
 struct GiftyApp: App {
-    let persistenceController = PersistenceController.shared
-
     var body: some Scene {
         WindowGroup {
             MainView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
+        .modelContainer(for: [Gift.self, Person.self, Event.self])
     }
 }

@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
-import CoreData
+import SwiftData
 
+@available(iOS 17, *)
 struct EditPersonView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.presentationMode) var presentationMode
 
-    @ObservedObject var person: Person
+    @Bindable var person: Person  // Use @Bindable instead of @ObservedObject
 
     var body: some View {
         NavigationView {
@@ -48,15 +49,11 @@ struct EditPersonView: View {
     }
 }
 
+@available(iOS 17, *)
 struct EditPersonView_Previews: PreviewProvider {
     static var previews: some View {
-        let context = PersistenceController.preview.container.viewContext
-        let newPerson = Person(context: context)
-        newPerson.firstname = "John"
-        newPerson.lastname = "Doe"
-
-        return EditPersonView(person: newPerson)
-            .environment(\.managedObjectContext, context)
+        let previewPerson = Person(firstname: "John", lastname: "Doe")
+        return EditPersonView(person: previewPerson)
     }
 }
 

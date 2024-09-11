@@ -6,38 +6,26 @@
 //
 
 import SwiftUI
-import CoreData
+import SwiftData
 
+@available(iOS 17, *)
 struct EventDetailView: View {
-    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.modelContext) private var viewContext
     @State private var showingEditEventView: Bool = false
     @State private var showingAddGiftView: Bool = false
 
-    @ObservedObject var event: Event
-
-    // FetchRequest to get the gifts associated with this event
-    @FetchRequest private var gifts: FetchedResults<Gift>
-
-    init(event: Event) {
-        self.event = event
-
-        // Initialize the FetchRequest to filter gifts by this event
-        _gifts = FetchRequest<Gift>(
-            sortDescriptors: [NSSortDescriptor(keyPath: \Gift.name, ascending: true)],
-            predicate: NSPredicate(format: "event == %@", event)
-        )
-    }
+    var event: Event
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            Text("Event on \(event.date!, formatter: dateFormatter)")
+            Text("Event on \(event.date ?? Date(), formatter: dateFormatter)")
                 .font(.title2)
                 .padding()
 
-            if !gifts.isEmpty {
+            if let gifts = event.gifts, !gifts.isEmpty {
                 List {
                     Section(header: Text("Gifts").font(.headline)) {
-                        ForEach(gifts) { gift in
+                        ForEach(gifts, id: \.self) { gift in
                             NavigationLink {
                                 GiftDetailView(gift: gift)
                             } label: {
@@ -65,7 +53,6 @@ struct EventDetailView: View {
                                 }
                             }
                         }
-                        .onDelete(perform: deleteGifts)
                     }
                 }
             } else {
@@ -79,9 +66,7 @@ struct EventDetailView: View {
         }
         .padding()
         .navigationTitle(event.name ?? "Event")
-        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
-        #endif
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 HStack {
@@ -98,36 +83,21 @@ struct EventDetailView: View {
         }
         .sheet(isPresented: $showingEditEventView) {
             EditEventView(event: event)
-                .environment(\.managedObjectContext, viewContext)
+                .environment(\.modelContext, viewContext)
         }
         .sheet(isPresented: $showingAddGiftView) {
             AddGiftView(event: event)
-                .environment(\.managedObjectContext, viewContext)
-        }
-    }
-
-    private func deleteGifts(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { gifts[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+                .environment(\.modelContext, viewContext)
         }
     }
 
     private func deleteGift(gift: Gift) {
         withAnimation {
             viewContext.delete(gift)
-
             do {
                 try viewContext.save()
             } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                print("Error saving context: \(error.localizedDescription)")
             }
         }
     }

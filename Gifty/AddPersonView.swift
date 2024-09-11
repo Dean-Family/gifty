@@ -6,18 +6,18 @@
 //
 
 import SwiftUI
-import CoreData
 import ContactsUI
+import SwiftData
 
+@available(iOS 17, *)
 struct AddPersonView: View {
-    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.modelContext) private var modelContext
     @Environment(\.presentationMode) var presentationMode
     @State private var personFirstName: String = ""
     @State private var personLastName: String = ""
     @State private var showingContactPicker = false
 
     var body: some View {
-        #if os(iOS)
         NavigationView {
             formContent
                 .navigationBarTitle("Add Person", displayMode: .inline)
@@ -34,10 +34,6 @@ struct AddPersonView: View {
                     }
                 }
         }
-        #else
-        formContent
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-        #endif
     }
     
     var formContent: some View {
@@ -53,7 +49,6 @@ struct AddPersonView: View {
             Divider()
                 .padding(.vertical)
             
-        #if os(iOS)
             Button("Select from Contacts") {
                 showingContactPicker = true
             }
@@ -66,26 +61,23 @@ struct AddPersonView: View {
                     personLastName = contact.familyName
                 }
             }
-        #endif
         }
         .padding()
     }
     
     private func addPerson() {
-        let newPerson = Person(context: viewContext)
-        newPerson.firstname = personFirstName
-        newPerson.lastname = personLastName
+        let newPerson = Person(firstname: personFirstName, lastname: personLastName)
+        modelContext.insert(newPerson)
         
         do {
-            try viewContext.save()
+            try modelContext.save()
             presentationMode.wrappedValue.dismiss()
         } catch {
-            // handle the Core Data error
+            print("Error saving person: \(error.localizedDescription)")
         }
     }
 }
 
-#if os(iOS)
 struct ContactPickerView: UIViewControllerRepresentable {
     var didSelectContact: (CNContact) -> Void
     
@@ -112,9 +104,4 @@ struct ContactPickerView: UIViewControllerRepresentable {
             didSelectContact(contact)
         }
     }
-}
-#endif
-
-#Preview {
-    AddPersonView()
 }

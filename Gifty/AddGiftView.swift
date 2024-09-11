@@ -6,23 +6,17 @@
 //
 
 import SwiftUI
-import CoreData
+import SwiftData
 import ContactsUI
 
+@available(iOS 17, *)
 struct AddGiftView: View {
-    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.modelContext) private var modelContext
     @Environment(\.presentationMode) var presentationMode
     
-    @FetchRequest(
-        entity: Person.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Person.lastname, ascending: true)]
-    ) var persons: FetchedResults<Person>
+    @Query(sort: \Person.lastname, order: .forward) var persons: [Person]
+    @Query(sort: \Event.date, order: .forward) var events: [Event]
 
-    @FetchRequest(
-        entity: Event.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Event.date, ascending: true)]
-    ) var events: FetchedResults<Event>
-    
     @State private var giftName: String = ""
     @State private var selectedPerson: Person?
     @State private var selectedEvent: Event?
@@ -35,7 +29,6 @@ struct AddGiftView: View {
 
     let statuses = ["Idea", "Planned", "Reserved", "Ordered", "Shipped", "Received", "Wrapped", "Delivered", "Given", "Opened", "Thanked", "Used", "Exchanged", "Returned", "Re-Gifted", "Expired", "Cancelled", "On Hold", "Pending", "Not Applicable"]
 
-    // Initializer accepting optional Person and Event
     init(person: Person? = nil, event: Event? = nil) {
         _selectedPerson = State(initialValue: person)
         _selectedEvent = State(initialValue: event)
@@ -78,7 +71,7 @@ struct AddGiftView: View {
                             .tag(person as Person?)
                     }
                 }
-                .pickerStyle(MenuPickerStyle()) // Use a more compact picker style
+                .pickerStyle(MenuPickerStyle())
 
                 Picker("Select Event", selection: $selectedEvent) {
                     ForEach(events, id: \.self) { event in
@@ -86,7 +79,7 @@ struct AddGiftView: View {
                             .tag(event as Event?)
                     }
                 }
-                .pickerStyle(MenuPickerStyle()) // Use a more compact picker style
+                .pickerStyle(MenuPickerStyle())
                 
                 TextField("Location", text: $location)
                     .padding()
@@ -130,7 +123,7 @@ struct AddGiftView: View {
     }
     
     private func addGift() {
-        let newGift = Gift(context: viewContext)
+        let newGift = Gift()
         newGift.name = giftName
         newGift.person = selectedPerson
         newGift.event = selectedEvent
@@ -138,10 +131,12 @@ struct AddGiftView: View {
         newGift.cents = convertDollarsToCents(priceInDollars)
         newGift.item_description = itemDescription
         newGift.link = link
-        newGift.status = status  // Save the selected status
+        newGift.status = status
+
+        modelContext.insert(newGift)
         
         do {
-            try viewContext.save()
+            try modelContext.save()
             presentationMode.wrappedValue.dismiss()
         } catch {
             // handle the Core Data error
@@ -154,24 +149,5 @@ struct AddGiftView: View {
             return Int64(dollarValue * 100)
         }
         return 0
-    }
-}
-
-struct AddGiftView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddGiftView()
-    }
-}
-
-extension Event {
-    static func all(viewContext: NSManagedObjectContext) -> [Event] {
-        let fetchRequest: NSFetchRequest<Event> = Event.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Event.date, ascending: true)]
-        
-        do {
-            return try viewContext.fetch(fetchRequest)
-        } catch {
-            return []
-        }
     }
 }

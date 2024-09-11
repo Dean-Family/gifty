@@ -6,29 +6,23 @@
 //
 
 import SwiftUI
-import CoreData
+import SwiftData
 
+@available(iOS 17, *)
 struct EditEventView: View {
-    @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.presentationMode) var presentationMode
 
-    @ObservedObject var event: Event
+    @Bindable var event: Event
 
     var body: some View {
         NavigationView {
             Form {
                 Section(header: Text("Event Name")) {
-                    TextField("Event Name", text: Binding(
-                        get: { event.name ?? "" },
-                        set: { event.name = $0 }
-                    ))
+                    TextField("Event Name", text: $event.name.boundString)
                 }
 
                 Section(header: Text("Event Date")) {
-                    DatePicker("Event Date", selection: Binding(
-                        get: { event.date ?? Date() },
-                        set: { event.date = $0 }
-                    ), displayedComponents: .date)
+                    DatePicker("Event Date", selection: $event.date.boundDate, displayedComponents: .date)
                 }
             }
             .navigationTitle("Edit Event")
@@ -41,15 +35,24 @@ struct EditEventView: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
-                        do {
-                            try viewContext.save()
-                            presentationMode.wrappedValue.dismiss()
-                        } catch {
-                            print("Error saving event: \(error.localizedDescription)")
-                        }
+                        presentationMode.wrappedValue.dismiss()
                     }
                 }
             }
         }
+    }
+}
+
+extension Optional where Wrapped == String {
+    var boundString: String {
+        get { self ?? "" }
+        set { self = newValue }
+    }
+}
+
+extension Optional where Wrapped == Date {
+    var boundDate: Date {
+        get { self ?? Date() }
+        set { self = newValue }
     }
 }

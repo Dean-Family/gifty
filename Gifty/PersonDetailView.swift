@@ -5,31 +5,19 @@
 //  Created by Gavin Dean on 8/29/24.
 //
 import SwiftUI
-import CoreData
+import SwiftData
 
+@available(iOS 17, *)
 struct PersonDetailView: View {
-    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.modelContext) private var modelContext
     @State private var showingEditPersonView: Bool = false
     @State private var showingAddGiftView: Bool = false
 
-    @ObservedObject var person: Person
-
-    // FetchRequest to get the gifts associated with this person
-    @FetchRequest private var gifts: FetchedResults<Gift>
-
-    init(person: Person) {
-        self.person = person
-
-        // Initialize the FetchRequest to filter gifts by this person
-        _gifts = FetchRequest<Gift>(
-            sortDescriptors: [NSSortDescriptor(keyPath: \Gift.name, ascending: true)]
-//            predicate: NSPredicate(format: "person == %@", person)
-        )
-    }
+    @Bindable var person: Person
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            if !gifts.isEmpty {
+            if let gifts = person.gifts, !gifts.isEmpty {
                 List {
                     Section(header: Text("Gifts").font(.headline)) {
                         ForEach(gifts) { gift in
@@ -74,9 +62,6 @@ struct PersonDetailView: View {
         }
         .padding()
         .navigationTitle(fullName(for: person))
-        #if os(iOS)
-        .navigationBarTitleDisplayMode(.inline)
-        #endif
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 HStack {
@@ -93,14 +78,11 @@ struct PersonDetailView: View {
         }
         .sheet(isPresented: $showingEditPersonView) {
             EditPersonView(person: person)
-                .environment(\.managedObjectContext, viewContext)
         }
         .sheet(isPresented: $showingAddGiftView) {
             AddGiftView(person: person)
-                .environment(\.managedObjectContext, viewContext)
         }
     }
-
     private func fullName(for person: Person) -> String {
         let firstName = person.firstname ?? "Unknown"
         let lastName = person.lastname ?? "Unknown"
@@ -109,23 +91,25 @@ struct PersonDetailView: View {
 
     private func deleteGifts(offsets: IndexSet) {
         withAnimation {
-            offsets.map { gifts[$0] }.forEach(viewContext.delete)
+            if let gifts = person.gifts {
+                offsets.map { gifts[$0] }.forEach { modelContext.delete($0) }
 
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                do {
+                    try modelContext.save()
+                } catch {
+                    let nsError = error as NSError
+                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                }
             }
         }
     }
 
     private func deleteGift(gift: Gift) {
         withAnimation {
-            viewContext.delete(gift)
+            modelContext.delete(gift)
 
             do {
-                try viewContext.save()
+                try modelContext.save()
             } catch {
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")

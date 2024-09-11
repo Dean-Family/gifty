@@ -6,22 +6,23 @@
 //
 
 import SwiftUI
-import CoreData
 import ContactsUI
+import SwiftData
 
+@available(iOS 17, *)
 struct AddEventView: View {
-    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.modelContext) private var modelContext
     @Environment(\.presentationMode) var presentationMode
 
     @State private var eventName: String = ""
     @State private var eventDate: Date = Date()
-        #if os(iOS)
+
+    #if os(iOS)
     @State private var selectedContact: CNContact?
-        #endif
     @State private var showingContactPicker = false
+    #endif
 
     var body: some View {
-        #if os(iOS)
         NavigationView {
             formContent
                 .navigationBarTitle("Add Event", displayMode: .inline)
@@ -38,10 +39,6 @@ struct AddEventView: View {
                     }
                 }
         }
-        #else
-        formContent
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-        #endif
     }
 
     var formContent: some View {
@@ -53,77 +50,62 @@ struct AddEventView: View {
             DatePicker("Event Date", selection: $eventDate, displayedComponents: [.date])
                 .padding()
 
+            #if os(iOS)
             Button("Get Birthday From Contacts") {
                 showingContactPicker = true
             }
-        #if os(iOS)
             .sheet(isPresented: $showingContactPicker) {
                 ContactPickerView { contact in
                     handleSelectedContact(contact: contact)
                 }
             }
-        #endif
+            #endif
         }
         .padding()
     }
 
-        #if os(iOS)
+    #if os(iOS)
     private func handleSelectedContact(contact: CNContact) {
         selectedContact = contact
 
-        // Use CNContactFormatter for full name formatting
         let fullName = CNContactFormatter.string(from: contact, style: .fullName) ?? "\(contact.givenName) \(contact.familyName)"
 
-        // Check if the name ends with 's' and adjust possessive form
         if eventName.isEmpty {
-            if fullName.last?.lowercased() == "s" {
-                eventName = "\(fullName)' Birthday"
-            } else {
-                eventName = "\(fullName)'s Birthday"
-            }
+            eventName = fullName.hasSuffix("s") ? "\(fullName)' Birthday" : "\(fullName)'s Birthday"
         }
 
-        // If the contact has a birthday, use it to set the event date
         if let birthday = contact.birthday {
             var dateComponents = DateComponents()
             dateComponents.day = birthday.day
             dateComponents.month = birthday.month
             let currentYear = Calendar.current.component(.year, from: Date())
-            
-            // Determine the correct year
+
             dateComponents.year = currentYear
             if let birthdateThisYear = Calendar.current.date(from: dateComponents), birthdateThisYear < Date() {
-                // If the birthday this year has already passed, set it for the next year
                 dateComponents.year = currentYear + 1
             }
-            
+
             if let birthdate = Calendar.current.date(from: dateComponents) {
                 eventDate = birthdate
             }
         }
     }
-        #endif
+    #endif
 
     private func addEvent() {
-        let newEvent = Event(context: viewContext)
-        newEvent.name = eventName
-        newEvent.date = eventDate
+        let newEvent = Event(date: eventDate, name: eventName)
+        modelContext.insert(newEvent)
 
         do {
-            try viewContext.save()
+            try modelContext.save()
             presentationMode.wrappedValue.dismiss()
         } catch {
-            // handle the Core Data error
+            // Handle the error
         }
     }
 }
 
-extension Date {
-    func getYear() -> Int {
-        return Calendar.current.component(.year, from: self)
-    }
-}
-
+@available(iOS 17, *)
 struct AddEventView_Previews: PreviewProvider {
     static var previews: some View {
         AddEventView()

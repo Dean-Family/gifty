@@ -6,43 +6,31 @@
 //
 
 import SwiftUI
-import CoreData
+import SwiftData
 
+@available(iOS 17, *)
 struct EditGiftView: View {
-    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.modelContext) private var modelContext
     @Environment(\.presentationMode) var presentationMode
 
-    @ObservedObject var gift: Gift
+    @Bindable var gift: Gift
 
-    @FetchRequest(
-        entity: Person.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Person.lastname, ascending: true)]
-    ) private var people: FetchedResults<Person>
-
-    @FetchRequest(
-        entity: Event.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Event.date, ascending: true)]
-    ) private var events: FetchedResults<Event>
+    @Query(sort: \Person.lastname, order: .forward) private var people: [Person]
+    @Query(sort: \Event.date, order: .forward) private var events: [Event]
 
     @State private var showingStatusModal = false  // State for showing modal
-    
+
     let statuses = ["Idea", "Planned", "Reserved", "Ordered", "Shipped", "Received", "Wrapped", "Delivered", "Given", "Opened", "Thanked", "Used", "Exchanged", "Returned", "Re-Gifted", "Expired", "Cancelled", "On Hold", "Pending", "Not Applicable"]
     
     var body: some View {
         NavigationView {
             Form {
                 Section(header: Text("Gift Name")) {
-                    TextField("Gift Name", text: Binding(
-                        get: { gift.name ?? "" },
-                        set: { gift.name = $0 }
-                    ))
+                    TextField("Gift Name", text: $gift.name.bound)
                 }
 
                 Section(header: Text("Person")) {
-                    Picker("Select Person", selection: Binding(
-                        get: { gift.person ?? people.first },
-                        set: { gift.person = $0 }
-                    )) {
+                    Picker("Select Person", selection: $gift.person) {
                         ForEach(people, id: \.self) { person in
                             Text("\(person.firstname ?? "") \(person.lastname ?? "")")
                                 .tag(person as Person?)
@@ -51,10 +39,7 @@ struct EditGiftView: View {
                 }
 
                 Section(header: Text("Event")) {
-                    Picker("Select Event", selection: Binding(
-                        get: { gift.event ?? events.first },
-                        set: { gift.event = $0 }
-                    )) {
+                    Picker("Select Event", selection: $gift.event) {
                         ForEach(events, id: \.self) { event in
                             Text("\(event.name ?? "Unknown Event") on \(event.date!, formatter: dateFormatter)")
                                 .tag(event as Event?)
@@ -63,35 +48,26 @@ struct EditGiftView: View {
                 }
 
                 Section(header: Text("Location")) {
-                    TextField("Location", text: Binding(
-                        get: { gift.location ?? "" },
-                        set: { gift.location = $0 }
-                    ))
+                    TextField("Location", text: $gift.location.bound)
                 }
 
                 Section(header: Text("Price (in Dollars)")) {
                     TextField("Price", text: Binding(
-                        get: { formatCentsToDollars(gift.cents) },
+                        get: { formatCentsToDollars(gift.cents ?? 0) },
                         set: { gift.cents = convertDollarsToCents($0) }
                     ))
                     .keyboardType(.decimalPad)
                 }
 
                 Section(header: Text("Item Description")) {
-                    TextEditor(text: Binding(
-                        get: { gift.item_description ?? "" },
-                        set: { gift.item_description = $0 }
-                    ))
-                    .frame(height: 100)
+                    TextEditor(text: $gift.item_description.bound)
+                        .frame(height: 100)
                 }
 
                 Section(header: Text("Link")) {
-                    TextField("Link", text: Binding(
-                        get: { gift.link ?? "" },
-                        set: { gift.link = $0 }
-                    ))
-                    .keyboardType(.URL)
-                    .autocapitalization(.none)
+                    TextField("Link", text: $gift.link.bound)
+                        .keyboardType(.URL)
+                        .autocapitalization(.none)
                 }
 
                 Section(header: Text("Status")) {
@@ -106,10 +82,11 @@ struct EditGiftView: View {
                         }
                     }
                     .sheet(isPresented: $showingStatusModal) {
-                        StatusSelectionModal(selectedStatus: Binding(
-                            get: { gift.status ?? "Idea" },
-                            set: { gift.status = $0 }
-                        ), isPresented: $showingStatusModal, statuses: statuses)
+                        StatusSelectionModal(
+                            selectedStatus: $gift.status.bound,
+                            isPresented: $showingStatusModal,
+                            statuses: statuses
+                        )
                     }
                 }
             }
@@ -124,7 +101,7 @@ struct EditGiftView: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
                         do {
-                            try viewContext.save()
+                            try modelContext.save()
                             presentationMode.wrappedValue.dismiss()
                         } catch {
                             print("Error saving gift: \(error.localizedDescription)")

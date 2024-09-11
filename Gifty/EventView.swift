@@ -6,22 +6,19 @@
 //
 
 import SwiftUI
-import CoreData
+import SwiftData
 
+@available(iOS 17, *)
 struct EventView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Event.date, ascending: true)],
-        animation: .default)
-    private var events: FetchedResults<Event>
+    @Environment(\.modelContext) private var modelContext
+    @Query(sort: \Event.date, order: .forward) private var events: [Event]
     @State private var showingAddEventView: Bool = false
 
     var body: some View {
         NavigationView {
             List {
                 Section(header: Text("Events").font(.headline)) {
-                    ForEach(events) { event in
+                    ForEach(events, id: \.self) { event in
                         NavigationLink(destination: EventDetailView(event: event)) {
                             VStack(alignment: .leading, spacing: 5) {
                                 Text(event.name ?? "Unknown")
@@ -62,16 +59,16 @@ struct EventView: View {
             Text("Select an event")
         }
         .sheet(isPresented: $showingAddEventView) {
-            AddEventView().environment(\.managedObjectContext, self.viewContext)
+            AddEventView().environment(\.modelContext, self.modelContext)
         }
     }
 
     private func deleteEvents(offsets: IndexSet) {
         withAnimation {
-            offsets.map { events[$0] }.forEach(viewContext.delete)
+            offsets.map { events[$0] }.forEach(modelContext.delete)
 
             do {
-                try viewContext.save()
+                try modelContext.save()
             } catch {
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
@@ -81,10 +78,10 @@ struct EventView: View {
 
     private func deleteEvent(event: Event) {
         withAnimation {
-            viewContext.delete(event)
+            modelContext.delete(event)
 
             do {
-                try viewContext.save()
+                try modelContext.save()
             } catch {
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
@@ -99,8 +96,9 @@ private let dateFormatter: DateFormatter = {
     return formatter
 }()
 
+@available(iOS 17, *)
 struct EventView_Previews: PreviewProvider {
     static var previews: some View {
-        EventView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        EventView().modelContainer(for: [Event.self, Person.self, Gift.self])
     }
 }

@@ -6,16 +6,12 @@
 //
 
 import SwiftUI
-import CoreData
+import SwiftData
 
+@available(iOS 17, *)
 struct PersonView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        entity: Person.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \Person.lastname, ascending: true)],
-        animation: .default
-    ) private var persons: FetchedResults<Person>
+    @Environment(\.modelContext) private var modelContext
+    @Query private var persons: [Person]
 
     @State private var showingAddPersonView: Bool = false
 
@@ -44,11 +40,9 @@ struct PersonView: View {
                 }
             }
             .toolbar {
-        #if os(iOS)
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
-                #endif
                 ToolbarItem(placement: .primaryAction) {
                     Button(action: {
                         showingAddPersonView = true
@@ -60,7 +54,7 @@ struct PersonView: View {
             Text("Select a person")
         }
         .sheet(isPresented: $showingAddPersonView) {
-            AddPersonView().environment(\.managedObjectContext, viewContext)
+            AddPersonView()
         }
     }
 
@@ -72,10 +66,10 @@ struct PersonView: View {
 
     private func deletePersons(offsets: IndexSet) {
         withAnimation {
-            offsets.map { persons[$0] }.forEach(viewContext.delete)
+            offsets.map { persons[$0] }.forEach { modelContext.delete($0) }
 
             do {
-                try viewContext.save()
+                try modelContext.save()
             } catch {
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
@@ -85,10 +79,10 @@ struct PersonView: View {
 
     private func deletePerson(person: Person) {
         withAnimation {
-            viewContext.delete(person)
+            modelContext.delete(person)
 
             do {
-                try viewContext.save()
+                try modelContext.save()
             } catch {
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
@@ -97,8 +91,9 @@ struct PersonView: View {
     }
 }
 
+@available(iOS 17, *)
 struct PersonView_Previews: PreviewProvider {
     static var previews: some View {
-        PersonView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        PersonView()
     }
 }

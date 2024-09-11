@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 17, *)
 struct MainView: View {
     @State private var selectedTab = 0
     
@@ -43,6 +44,7 @@ struct MainView: View {
 }
 
 
+@available(iOS 17, *)
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()

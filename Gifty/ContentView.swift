@@ -6,15 +6,15 @@
 //
 
 import SwiftUI
-import CoreData
+import SwiftData
 
+@available(iOS 17, *)
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.modelContext) private var modelContext
 
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Gift.name, ascending: true)],
-        animation: .default)
-    private var gifts: FetchedResults<Gift>
+    @Query(sort: \Gift.name, order: .forward)
+    private var gifts: [Gift]
+    
     @State private var showingAddGiftView: Bool = false
 
     var body: some View {
@@ -65,11 +65,11 @@ struct ContentView: View {
                 }
             }
             .toolbar {
-#if os(iOS)
+                #if os(iOS)
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
-#endif
+                #endif
                 ToolbarItem(placement: .primaryAction) {
                     Button(action: {
                         showingAddGiftView = true
@@ -81,32 +81,30 @@ struct ContentView: View {
             Text("Select a gift")
         }
         .sheet(isPresented: $showingAddGiftView) {
-            AddGiftView().environment(\.managedObjectContext, self.viewContext)
+            AddGiftView().environment(\.modelContext, self.modelContext)
         }
     }
 
     private func deleteGifts(offsets: IndexSet) {
         withAnimation {
-            offsets.map { gifts[$0] }.forEach(viewContext.delete)
+            offsets.map { gifts[$0] }.forEach { modelContext.delete($0) }
 
             do {
-                try viewContext.save()
+                try modelContext.save()
             } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                print("Error saving after deleting gifts: \(error)")
             }
         }
     }
 
     private func deleteGift(gift: Gift) {
         withAnimation {
-            viewContext.delete(gift)
+            modelContext.delete(gift)
 
             do {
-                try viewContext.save()
+                try modelContext.save()
             } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                print("Error saving after deleting gift: \(error)")
             }
         }
     }
@@ -118,8 +116,9 @@ private let dateFormatter: DateFormatter = {
     return formatter
 }()
 
+@available(iOS 17, *)
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        ContentView().modelContainer(for: [Gift.self, Event.self, Person.self])
     }
 }

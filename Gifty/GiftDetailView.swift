@@ -1,12 +1,13 @@
 //
 import SwiftUI
-import CoreData
+import SwiftData
 
+@available(iOS 17, *)
 struct GiftDetailView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-    @ObservedObject var gift: Gift
-
+    @Environment(\.modelContext) private var viewContext
     @State private var showingEditGiftView = false
+
+    var gift: Gift
 
     var body: some View {
         ScrollView {
@@ -53,7 +54,7 @@ struct GiftDetailView: View {
                             .foregroundColor(.secondary)
                     }
                     .padding(.bottom, 2)
-                    
+
                     HStack {
                         Text("Date:")
                             .font(.headline)
@@ -83,7 +84,7 @@ struct GiftDetailView: View {
                     Text("Price:")
                         .font(.headline)
                     Spacer()
-                    Text(formatPrice(cents: gift.cents))
+                    Text(formatPrice(cents: gift.cents ?? 0))
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
@@ -113,9 +114,7 @@ struct GiftDetailView: View {
             .padding()
         }
         .navigationTitle(gift.name ?? "Gift")
-        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
-        #endif
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button("Edit Gift") {
@@ -124,7 +123,7 @@ struct GiftDetailView: View {
             }
         }
         .sheet(isPresented: $showingEditGiftView) {
-            EditGiftView(gift: gift).environment(\.managedObjectContext, viewContext)
+            EditGiftView(gift: gift).environment(\.modelContext, viewContext)
         }
     }
 
