@@ -83,7 +83,7 @@ struct AddGiftView: View {
                 }
                 .pickerStyle(MenuPickerStyle())
                 
-                TextField("Location", text: $location)
+                TextField("Where to purchase", text: $location)
                     .padding()
                     .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
                 
@@ -109,7 +109,6 @@ struct AddGiftView: View {
                 }) {
                     HStack {
                         Text("Status")
-                        Text("None").tag("None")
                         Spacer()
                         Text(status)
                             .foregroundColor(.gray)

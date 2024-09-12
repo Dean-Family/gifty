@@ -1,118 +1,105 @@
 //
 import SwiftUI
 import SwiftData
+import MapKit
+
+import SwiftUI
+import SwiftData
 
 @available(iOS 17, *)
 struct GiftDetailView: View {
-    @Environment(\.modelContext) private var viewContext
-    @State private var showingEditGiftView = false
-
-    var gift: Gift
+    @Environment(\.modelContext) private var modelContext
+    @State private var showingEditGiftView: Bool = false
+    @Bindable var gift: Gift
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
+        VStack(alignment: .leading, spacing: 20) {
+            // Gift Name
+            Text(gift.name ?? "Unnamed Gift")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .padding(.bottom, 10)
 
-                // Gift Name
-                Text(gift.name ?? "Unnamed Gift")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .padding(.bottom, 10)
-
-                // Status
+            // Associated Giftee
+            if let giftee = gift.giftee {
                 HStack {
-                    Text("Status:")
+                    Text("Gift for:")
                         .font(.headline)
                     Spacer()
-                    Text(gift.status ?? "Unknown Status")
+                    Text("\(giftee.firstname ?? "Unknown") \(giftee.lastname ?? "Unknown")")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
-                .padding(.bottom, 10)
+            }
 
-                // Associated Giftee
-                if let giftee = gift.giftee {
-                    HStack {
-                        Text("Gift for:")
-                            .font(.headline)
-                        Spacer()
-                        Text("\(giftee.firstname ?? "Unknown") \(giftee.lastname ?? "?")")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                    }
-                    .padding(.bottom, 10)
+            // Associated Event
+            if let event = gift.event {
+                HStack {
+                    Text("Event:")
+                        .font(.headline)
+                    Spacer()
+                    Text("\(event.name ?? "Unknown Event") on \(event.date ?? Date(), formatter: dateFormatter)")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
                 }
+            }
 
-                // Associated Event
-                if let event = gift.event {
-                    HStack {
-                        Text("Event:")
-                            .font(.headline)
-                        Spacer()
-                        Text(event.name ?? "Unknown Event")
+            // Location Display
+            if let location = gift.location, !location.isEmpty {
+                HStack {
+                    Text("Where to purchase:")
+                        .font(.headline)
+                    Spacer()
+                    if let encodedLocation = location.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+                       let mapURL = URL(string: "http://maps.apple.com/?q=\(encodedLocation)") {
+                        Link(location, destination: mapURL)
                             .font(.subheadline)
-                            .foregroundColor(.secondary)
-                    }
-                    .padding(.bottom, 2)
-
-                    HStack {
-                        Text("Date:")
-                            .font(.headline)
-                        Spacer()
-                        Text(event.date!, formatter: dateFormatter)
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                    }
-                    .padding(.bottom, 10)
-                }
-
-                // Location
-                if let location = gift.location, !location.isEmpty {
-                    HStack {
-                        Text("Location:")
-                            .font(.headline)
-                        Spacer()
+                            .foregroundColor(.blue)
+                    } else {
                         Text(location)
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
-                    .padding(.bottom, 10)
                 }
+            }
 
-                // Cents (Price)
+            // Price Display
+            HStack {
+                Text("Price:")
+                    .font(.headline)
+                Spacer()
+                Text(formatPrice(cents: gift.cents))
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            }
+
+            // Item Description
+            if let itemDescription = gift.item_description, !itemDescription.isEmpty {
+                Text("Description")
+                    .font(.headline)
+                    .padding(.bottom, 5)
+                Text(itemDescription)
+                    .font(.body)
+                    .foregroundColor(.secondary)
+                    .padding(.bottom, 10)
+            }
+
+            // Associated Giftee
+            if let link = gift.link, let linkURL = URL(string: link) {
                 HStack {
-                    Text("Price:")
+                    Text("Link:")
                         .font(.headline)
                     Spacer()
-                    Text(formatPrice(cents: gift.cents ?? 0))
+                    Link(link, destination: linkURL)
                         .font(.subheadline)
-                        .foregroundColor(.secondary)
-                }
-                .padding(.bottom, 10)
-
-                // Item Description
-                if let itemDescription = gift.item_description, !itemDescription.isEmpty {
-                    Text("Description")
-                        .font(.headline)
-                        .padding(.bottom, 5)
-                    Text(itemDescription)
-                        .font(.body)
-                        .foregroundColor(.secondary)
-                        .padding(.bottom, 10)
-                }
-
-                // Link
-                if let link = gift.link, !link.isEmpty {
-                    Link("More Info", destination: URL(string: link)!)
-                        .font(.headline)
                         .foregroundColor(.blue)
-                        .padding(.bottom, 10)
                 }
-
-                Spacer()
             }
-            .padding()
+
+
+            Spacer()
         }
+        .padding()
         .navigationTitle(gift.name ?? "Gift")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -123,12 +110,13 @@ struct GiftDetailView: View {
             }
         }
         .sheet(isPresented: $showingEditGiftView) {
-            EditGiftView(gift: gift).environment(\.modelContext, viewContext)
+            EditGiftView(gift: gift)
+                .environment(\.modelContext, modelContext)
         }
     }
 
-    private func formatPrice(cents: Int64) -> String {
-        let dollars = Double(cents) / 100.0
+    private func formatPrice(cents: Int64?) -> String {
+        let dollars = Double(cents ?? 0) / 100.0
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         return formatter.string(from: NSNumber(value: dollars)) ?? "$0.00"
@@ -137,6 +125,6 @@ struct GiftDetailView: View {
 
 private let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.dateStyle = .short
+    formatter.dateStyle = .medium
     return formatter
 }()
