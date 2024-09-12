@@ -30,10 +30,10 @@ struct MainView: View {
                 .tag(1)
             
             // People View
-            PersonView()
+            GifteeView()
                 .tabItem {
                     Image(systemName: "person.2")
-                    Text("People")
+                    Text("Giftees")
                 }
                 .tag(2)
         }

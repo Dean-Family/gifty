@@ -18,9 +18,9 @@ import SwiftData
     var location: String?
     var status: String?
     var event: Event?
-    var person: Person?
+    var giftee: Giftee?
     
-    public init(name: String? = nil, cents: Int64? = 0, item_description: String? = nil, link: String? = nil, location: String? = nil, status: String? = nil, event: Event? = nil, person: Person? = nil) {
+    public init(name: String? = nil, cents: Int64? = 0, item_description: String? = nil, link: String? = nil, location: String? = nil, status: String? = nil, event: Event? = nil, giftee: Giftee? = nil) {
         self.name = name
         self.cents = cents
         self.item_description = item_description
@@ -28,6 +28,6 @@ import SwiftData
         self.location = location
         self.status = status
         self.event = event
-        self.person = person
+        self.giftee = giftee
     }
 }

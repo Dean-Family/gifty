@@ -7,20 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2B076F122C818C9B004CDEAD /* EditPersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B076F112C818C9B004CDEAD /* EditPersonView.swift */; };
-		2B076F142C819174004CDEAD /* PersonDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B076F132C819174004CDEAD /* PersonDetailView.swift */; };
+		2B076F122C818C9B004CDEAD /* EditGifteeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B076F112C818C9B004CDEAD /* EditGifteeView.swift */; };
+		2B076F142C819174004CDEAD /* GifteeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B076F132C819174004CDEAD /* GifteeDetailView.swift */; };
 		2B076F162C8199EE004CDEAD /* GiftDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B076F152C8199EE004CDEAD /* GiftDetailView.swift */; };
 		2B076F182C819A21004CDEAD /* EditGiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B076F172C819A21004CDEAD /* EditGiftView.swift */; };
 		2B076F1A2C819BC5004CDEAD /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B076F192C819BC5004CDEAD /* EventDetailView.swift */; };
 		2B076F1C2C819C11004CDEAD /* EditEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B076F1B2C819C11004CDEAD /* EditEventView.swift */; };
 		2B1B642C2B19BA190074FACE /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B642B2B19BA190074FACE /* EventView.swift */; };
 		2B1B642E2B19BCD30074FACE /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B642D2B19BCD30074FACE /* AddEventView.swift */; };
-		2B1B64302B19C6090074FACE /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B642F2B19C6090074FACE /* PersonView.swift */; };
-		2B1B64322B19C9420074FACE /* AddPersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B64312B19C9420074FACE /* AddPersonView.swift */; };
+		2B1B64302B19C6090074FACE /* GifteeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B642F2B19C6090074FACE /* GifteeView.swift */; };
+		2B1B64322B19C9420074FACE /* AddGifteeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1B64312B19C9420074FACE /* AddGifteeView.swift */; };
 		2B26E4022AEA3E68005F5278 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B26E4012AEA3E68005F5278 /* MainView.swift */; };
 		2B404BD52C8669C400511767 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B404BD22C8669C400511767 /* Event.swift */; };
 		2B404BD62C8669C400511767 /* Gift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B404BD32C8669C400511767 /* Gift.swift */; };
-		2B404BD72C8669C400511767 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B404BD42C8669C400511767 /* Person.swift */; };
+		2B404BD72C8669C400511767 /* Giftee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B404BD42C8669C400511767 /* Giftee.swift */; };
 		2B5A1CB82ADFA6A2005BC16E /* AddGiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A1CB72ADFA6A2005BC16E /* AddGiftView.swift */; };
 		2B5A1CBA2ADFB523005BC16E /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A1CB92ADFB523005BC16E /* Documentation.docc */; };
 		2BD5579C2A5A9635000DB9F8 /* GiftyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5579B2A5A9635000DB9F8 /* GiftyApp.swift */; };
@@ -53,20 +53,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2B076F112C818C9B004CDEAD /* EditPersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPersonView.swift; sourceTree = "<group>"; };
-		2B076F132C819174004CDEAD /* PersonDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailView.swift; sourceTree = "<group>"; };
+		2B076F112C818C9B004CDEAD /* EditGifteeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGifteeView.swift; sourceTree = "<group>"; };
+		2B076F132C819174004CDEAD /* GifteeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifteeDetailView.swift; sourceTree = "<group>"; };
 		2B076F152C8199EE004CDEAD /* GiftDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftDetailView.swift; sourceTree = "<group>"; };
 		2B076F172C819A21004CDEAD /* EditGiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGiftView.swift; sourceTree = "<group>"; };
 		2B076F192C819BC5004CDEAD /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
 		2B076F1B2C819C11004CDEAD /* EditEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventView.swift; sourceTree = "<group>"; };
 		2B1B642B2B19BA190074FACE /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		2B1B642D2B19BCD30074FACE /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
-		2B1B642F2B19C6090074FACE /* PersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
-		2B1B64312B19C9420074FACE /* AddPersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPersonView.swift; sourceTree = "<group>"; };
+		2B1B642F2B19C6090074FACE /* GifteeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifteeView.swift; sourceTree = "<group>"; };
+		2B1B64312B19C9420074FACE /* AddGifteeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGifteeView.swift; sourceTree = "<group>"; };
 		2B26E4012AEA3E68005F5278 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2B404BD22C8669C400511767 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Event.swift; path = Gifty/Event.swift; sourceTree = "<group>"; };
 		2B404BD32C8669C400511767 /* Gift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Gift.swift; path = Gifty/Gift.swift; sourceTree = "<group>"; };
-		2B404BD42C8669C400511767 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Person.swift; path = Gifty/Person.swift; sourceTree = "<group>"; };
+		2B404BD42C8669C400511767 /* Giftee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Giftee.swift; path = Gifty/Giftee.swift; sourceTree = "<group>"; };
 		2B5A1CB72ADFA6A2005BC16E /* AddGiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGiftView.swift; sourceTree = "<group>"; };
 		2B5A1CB92ADFB523005BC16E /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
 		2BD557982A5A9635000DB9F8 /* Gifty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gifty.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,7 +115,7 @@
 			children = (
 				2B404BD22C8669C400511767 /* Event.swift */,
 				2B404BD32C8669C400511767 /* Gift.swift */,
-				2B404BD42C8669C400511767 /* Person.swift */,
+				2B404BD42C8669C400511767 /* Giftee.swift */,
 				2B5A1CB92ADFB523005BC16E /* Documentation.docc */,
 				2BD5579A2A5A9635000DB9F8 /* Gifty */,
 				2BD557B12A5A9636000DB9F8 /* GiftyTests */,
@@ -150,10 +150,10 @@
 				2B26E4012AEA3E68005F5278 /* MainView.swift */,
 				2B1B642B2B19BA190074FACE /* EventView.swift */,
 				2B1B642D2B19BCD30074FACE /* AddEventView.swift */,
-				2B1B642F2B19C6090074FACE /* PersonView.swift */,
-				2B076F132C819174004CDEAD /* PersonDetailView.swift */,
-				2B1B64312B19C9420074FACE /* AddPersonView.swift */,
-				2B076F112C818C9B004CDEAD /* EditPersonView.swift */,
+				2B1B642F2B19C6090074FACE /* GifteeView.swift */,
+				2B076F132C819174004CDEAD /* GifteeDetailView.swift */,
+				2B1B64312B19C9420074FACE /* AddGifteeView.swift */,
+				2B076F112C818C9B004CDEAD /* EditGifteeView.swift */,
 				2B076F192C819BC5004CDEAD /* EventDetailView.swift */,
 				2B076F1B2C819C11004CDEAD /* EditEventView.swift */,
 				2BE705A72C8283C40028B7F0 /* StatusSelectionModal.swift */,
@@ -318,7 +318,7 @@
 			files = (
 				2B076F1A2C819BC5004CDEAD /* EventDetailView.swift in Sources */,
 				2BD5579C2A5A9635000DB9F8 /* GiftyApp.swift in Sources */,
-				2B076F142C819174004CDEAD /* PersonDetailView.swift in Sources */,
+				2B076F142C819174004CDEAD /* GifteeDetailView.swift in Sources */,
 				2B26E4022AEA3E68005F5278 /* MainView.swift in Sources */,
 				2BE705A82C8283C40028B7F0 /* StatusSelectionModal.swift in Sources */,
 				2B076F182C819A21004CDEAD /* EditGiftView.swift in Sources */,
@@ -328,14 +328,14 @@
 				2BD557A12A5A9635000DB9F8 /* Gifty.xcdatamodeld in Sources */,
 				2B1B642E2B19BCD30074FACE /* AddEventView.swift in Sources */,
 				2B404BD62C8669C400511767 /* Gift.swift in Sources */,
-				2B1B64322B19C9420074FACE /* AddPersonView.swift in Sources */,
-				2B1B64302B19C6090074FACE /* PersonView.swift in Sources */,
+				2B1B64322B19C9420074FACE /* AddGifteeView.swift in Sources */,
+				2B1B64302B19C6090074FACE /* GifteeView.swift in Sources */,
 				2BD557A32A5A9635000DB9F8 /* ContentView.swift in Sources */,
 				2BD5579E2A5A9635000DB9F8 /* Persistence.swift in Sources */,
 				2B5A1CB82ADFA6A2005BC16E /* AddGiftView.swift in Sources */,
 				2B1B642C2B19BA190074FACE /* EventView.swift in Sources */,
-				2B404BD72C8669C400511767 /* Person.swift in Sources */,
-				2B076F122C818C9B004CDEAD /* EditPersonView.swift in Sources */,
+				2B404BD72C8669C400511767 /* Giftee.swift in Sources */,
+				2B076F122C818C9B004CDEAD /* EditGifteeView.swift in Sources */,
 				2B076F1C2C819C11004CDEAD /* EditEventView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -30,13 +30,13 @@ struct GiftDetailView: View {
                 }
                 .padding(.bottom, 10)
 
-                // Associated Person
-                if let person = gift.person {
+                // Associated Giftee
+                if let giftee = gift.giftee {
                     HStack {
                         Text("Gift for:")
                             .font(.headline)
                         Spacer()
-                        Text("\(person.firstname ?? "Unknown") \(person.lastname ?? "?")")
+                        Text("\(giftee.firstname ?? "Unknown") \(giftee.lastname ?? "?")")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }

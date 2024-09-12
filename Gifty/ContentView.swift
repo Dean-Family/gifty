@@ -30,16 +30,16 @@ struct ContentView: View {
                                     Text(gift.name ?? "Unknown")
                                         .font(.headline)
 
-                                    if let person = gift.person, let event = gift.event {
-                                        Text("For \(person.firstname ?? "Unknown") \(person.lastname ?? "Unknown")")
+                                    if let giftee = gift.giftee, let event = gift.event {
+                                        Text("For \(giftee.firstname ?? "Unknown") \(giftee.lastname ?? "Unknown")")
                                             .font(.subheadline)
                                             .foregroundColor(.secondary)
 
                                         Text("\(event.name ?? "Unknown") on \(event.date!, formatter: dateFormatter)")
                                             .font(.subheadline)
                                             .foregroundColor(.secondary)
-                                    } else if let person = gift.person {
-                                        Text("For \(person.firstname ?? "Unknown") \(person.lastname ?? "Unknown")")
+                                    } else if let giftee = gift.giftee {
+                                        Text("For \(giftee.firstname ?? "Unknown") \(giftee.lastname ?? "Unknown")")
                                             .font(.subheadline)
                                             .foregroundColor(.secondary)
                                     } else if let event = gift.event {
@@ -119,6 +119,6 @@ private let dateFormatter: DateFormatter = {
 @available(iOS 17, *)
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().modelContainer(for: [Gift.self, Event.self, Person.self])
+        ContentView().modelContainer(for: [Gift.self, Event.self, Giftee.self])
     }
 }

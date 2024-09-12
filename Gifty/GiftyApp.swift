@@ -14,6 +14,6 @@ struct GiftyApp: App {
         WindowGroup {
             MainView()
         }
-        .modelContainer(for: [Gift.self, Person.self, Event.self])
+        .modelContainer(for: [Gift.self, Giftee.self, Event.self])
     }
 }

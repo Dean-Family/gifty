@@ -1,5 +1,5 @@
 //
-//  AddPersonView.swift
+//  AddGifteeView.swift
 //  Gifty
 //
 //  Created by Gavin Dean on 11/30/23.
@@ -10,17 +10,17 @@ import ContactsUI
 import SwiftData
 
 @available(iOS 17, *)
-struct AddPersonView: View {
+struct AddGifteeView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.presentationMode) var presentationMode
-    @State private var personFirstName: String = ""
-    @State private var personLastName: String = ""
+    @State private var gifteeFirstName: String = ""
+    @State private var gifteeLastName: String = ""
     @State private var showingContactPicker = false
 
     var body: some View {
         NavigationView {
             formContent
-                .navigationBarTitle("Add Person", displayMode: .inline)
+                .navigationBarTitle("Add Giftee", displayMode: .inline)
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
                         Button("Cancel") {
@@ -29,7 +29,7 @@ struct AddPersonView: View {
                     }
                     ToolbarItem(placement: .confirmationAction) {
                         Button("Save") {
-                            addPerson()
+                            addGiftee()
                         }
                     }
                 }
@@ -38,11 +38,11 @@ struct AddPersonView: View {
     
     var formContent: some View {
         VStack(spacing: 20) {
-            TextField("Person first name", text: $personFirstName)
+            TextField("Giftee first name", text: $gifteeFirstName)
                 .padding()
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
             
-            TextField("Person last name", text: $personLastName)
+            TextField("Giftee last name", text: $gifteeLastName)
                 .padding()
                 .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
             
@@ -57,23 +57,23 @@ struct AddPersonView: View {
             .padding(.top)
             .sheet(isPresented: $showingContactPicker) {
                 ContactPickerView { contact in
-                    personFirstName = contact.givenName
-                    personLastName = contact.familyName
+                    gifteeFirstName = contact.givenName
+                    gifteeLastName = contact.familyName
                 }
             }
         }
         .padding()
     }
     
-    private func addPerson() {
-        let newPerson = Person(firstname: personFirstName, lastname: personLastName)
-        modelContext.insert(newPerson)
+    private func addGiftee() {
+        let newGiftee = Giftee(firstname: gifteeFirstName, lastname: gifteeLastName)
+        modelContext.insert(newGiftee)
         
         do {
             try modelContext.save()
             presentationMode.wrappedValue.dismiss()
         } catch {
-            print("Error saving person: \(error.localizedDescription)")
+            print("Error saving giftee: \(error.localizedDescription)")
         }
     }
 }

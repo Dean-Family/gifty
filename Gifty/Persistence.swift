@@ -26,8 +26,8 @@
 //            modelContext.insert(newEvent)
 //        }
 //        for _ in 0..<10 {
-//            let newPerson = Person(firstname: "Tina", lastname: "Esting")
-//            modelContext.insert(newPerson)
+//            let newGiftee = Giftee(firstname: "Tina", lastname: "Esting")
+//            modelContext.insert(newGiftee)
 //        }
 //        return result
 //    }()
@@ -36,6 +36,6 @@
 //
 //    init(inMemory: Bool = false) {
 //        let config = ModelConfiguration(isStoredInMemory: inMemory)
-//        modelContainer = try! ModelContainer(for: [Gift.self, Person.self, Event.self], configuration: config)
+//        modelContainer = try! ModelContainer(for: [Gift.self, Giftee.self, Event.self], configuration: config)
 //    }
 //}

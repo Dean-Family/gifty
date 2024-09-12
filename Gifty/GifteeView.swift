@@ -1,5 +1,5 @@
 //
-//  PersonView.swift
+//  GifteeView.swift
 //  Gifty
 //
 //  Created by Gavin Dean on 11/30/23.
@@ -9,34 +9,34 @@ import SwiftUI
 import SwiftData
 
 @available(iOS 17, *)
-struct PersonView: View {
+struct GifteeView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var persons: [Person]
+    @Query private var giftees: [Giftee]
 
-    @State private var showingAddPersonView: Bool = false
+    @State private var showingAddGifteeView: Bool = false
 
     var body: some View {
         NavigationView {
             List {
                 Section(header: Text("People").font(.headline)) {
-                    ForEach(persons) { person in
-                        NavigationLink(destination: PersonDetailView(person: person)) {
+                    ForEach(giftees) { giftee in
+                        NavigationLink(destination: GifteeDetailView(giftee: giftee)) {
                             VStack(alignment: .leading) {
-                                Text(fullName(for: person))
+                                Text(fullName(for: giftee))
                                     .font(.headline)
                                     .padding(.vertical, 2)
                             }
                         }
                         .contextMenu {
                             Button(action: {
-                                deletePerson(person: person)
+                                deleteGiftee(giftee: giftee)
                             }) {
                                 Text("Delete")
                                 Image(systemName: "trash")
                             }
                         }
                     }
-                    .onDelete(perform: deletePersons)
+                    .onDelete(perform: deleteGiftees)
                 }
             }
             .toolbar {
@@ -45,28 +45,28 @@ struct PersonView: View {
                 }
                 ToolbarItem(placement: .primaryAction) {
                     Button(action: {
-                        showingAddPersonView = true
+                        showingAddGifteeView = true
                     }) {
-                        Label("Add Person", systemImage: "plus")
+                        Label("Add Giftee", systemImage: "plus")
                     }
                 }
             }
-            Text("Select a person")
+            Text("Select a giftee")
         }
-        .sheet(isPresented: $showingAddPersonView) {
-            AddPersonView()
+        .sheet(isPresented: $showingAddGifteeView) {
+            AddGifteeView()
         }
     }
 
-    private func fullName(for person: Person) -> String {
-        let firstName = person.firstname ?? "Unknown"
-        let lastName = person.lastname ?? "Unknown"
+    private func fullName(for giftee: Giftee) -> String {
+        let firstName = giftee.firstname ?? "Unknown"
+        let lastName = giftee.lastname ?? "Unknown"
         return "\(firstName) \(lastName)"
     }
 
-    private func deletePersons(offsets: IndexSet) {
+    private func deleteGiftees(offsets: IndexSet) {
         withAnimation {
-            offsets.map { persons[$0] }.forEach { modelContext.delete($0) }
+            offsets.map { giftees[$0] }.forEach { modelContext.delete($0) }
 
             do {
                 try modelContext.save()
@@ -77,9 +77,9 @@ struct PersonView: View {
         }
     }
 
-    private func deletePerson(person: Person) {
+    private func deleteGiftee(giftee: Giftee) {
         withAnimation {
-            modelContext.delete(person)
+            modelContext.delete(giftee)
 
             do {
                 try modelContext.save()
@@ -92,8 +92,8 @@ struct PersonView: View {
 }
 
 @available(iOS 17, *)
-struct PersonView_Previews: PreviewProvider {
+struct GifteeView_Previews: PreviewProvider {
     static var previews: some View {
-        PersonView()
+        GifteeView()
     }
 }

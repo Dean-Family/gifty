@@ -15,7 +15,7 @@ struct EditGiftView: View {
 
     @Bindable var gift: Gift
 
-    @Query(sort: \Person.lastname, order: .forward) private var people: [Person]
+    @Query(sort: \Giftee.lastname, order: .forward) private var people: [Giftee]
     @Query(sort: \Event.date, order: .forward) private var events: [Event]
 
     @State private var showingStatusModal = false  // State for showing modal
@@ -29,11 +29,11 @@ struct EditGiftView: View {
                     TextField("Gift Name", text: $gift.name.bound)
                 }
 
-                Section(header: Text("Person")) {
-                    Picker("Select Person", selection: $gift.person) {
-                        ForEach(people, id: \.self) { person in
-                            Text("\(person.firstname ?? "") \(person.lastname ?? "")")
-                                .tag(person as Person?)
+                Section(header: Text("Giftee")) {
+                    Picker("Select Giftee", selection: $gift.giftee) {
+                        ForEach(people, id: \.self) { giftee in
+                            Text("\(giftee.firstname ?? "") \(giftee.lastname ?? "")")
+                                .tag(giftee as Giftee?)
                         }
                     }
                 }

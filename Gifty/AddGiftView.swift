@@ -14,11 +14,11 @@ struct AddGiftView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.presentationMode) var presentationMode
     
-    @Query(sort: \Person.lastname, order: .forward) var persons: [Person]
+    @Query(sort: \Giftee.lastname, order: .forward) var giftees: [Giftee]
     @Query(sort: \Event.date, order: .forward) var events: [Event]
 
     @State private var giftName: String = ""
-    @State private var selectedPerson: Person?
+    @State private var selectedGiftee: Giftee?
     @State private var selectedEvent: Event?
     @State private var location: String = ""
     @State private var priceInDollars: String = ""
@@ -29,8 +29,8 @@ struct AddGiftView: View {
 
     let statuses = ["Idea", "Planned", "Reserved", "Ordered", "Shipped", "Received", "Wrapped", "Delivered", "Given", "Opened", "Thanked", "Used", "Exchanged", "Returned", "Re-Gifted", "Expired", "Cancelled", "On Hold", "Pending", "Not Applicable"]
 
-    init(person: Person? = nil, event: Event? = nil) {
-        _selectedPerson = State(initialValue: person)
+    init(giftee: Giftee? = nil, event: Event? = nil) {
+        _selectedGiftee = State(initialValue: giftee)
         _selectedEvent = State(initialValue: event)
     }
     
@@ -65,15 +65,17 @@ struct AddGiftView: View {
                     .padding()
                     .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
                 
-                Picker("Select Person", selection: $selectedPerson) {
-                    ForEach(persons, id: \.self) { person in
-                        Text("\(person.firstname ?? "Unknown") \(person.lastname ?? "")")
-                            .tag(person as Person?)
+                Picker("Select Giftee", selection: $selectedGiftee) {
+                    Text("None").tag(nil as Giftee?)
+                    ForEach(giftees, id: \.self) { giftee in
+                        Text("\(giftee.firstname ?? "Unknown") \(giftee.lastname ?? "")")
+                            .tag(giftee as Giftee?)
                     }
                 }
                 .pickerStyle(MenuPickerStyle())
 
                 Picker("Select Event", selection: $selectedEvent) {
+                    Text("None").tag(nil as Event?)
                     ForEach(events, id: \.self) { event in
                         Text(event.name ?? "Unknown")
                             .tag(event as Event?)
@@ -107,6 +109,7 @@ struct AddGiftView: View {
                 }) {
                     HStack {
                         Text("Status")
+                        Text("None").tag("None")
                         Spacer()
                         Text(status)
                             .foregroundColor(.gray)
@@ -125,7 +128,7 @@ struct AddGiftView: View {
     private func addGift() {
         let newGift = Gift()
         newGift.name = giftName
-        newGift.person = selectedPerson
+        newGift.giftee = selectedGiftee
         newGift.event = selectedEvent
         newGift.location = location
         newGift.cents = convertDollarsToCents(priceInDollars)

@@ -34,8 +34,8 @@ struct EventDetailView: View {
                                         Text(gift.name ?? "Unknown")
                                             .font(.headline)
 
-                                        if let person = gift.person {
-                                            Text("For \(person.firstname ?? "Unknown") \(person.lastname ?? "Unknown")")
+                                        if let giftee = gift.giftee {
+                                            Text("For \(giftee.firstname ?? "Unknown") \(giftee.lastname ?? "Unknown")")
                                                 .font(.subheadline)
                                                 .foregroundColor(.secondary)
                                         }

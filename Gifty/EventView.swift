@@ -99,6 +99,6 @@ private let dateFormatter: DateFormatter = {
 @available(iOS 17, *)
 struct EventView_Previews: PreviewProvider {
     static var previews: some View {
-        EventView().modelContainer(for: [Event.self, Person.self, Gift.self])
+        EventView().modelContainer(for: [Event.self, Giftee.self, Gift.self])
     }
 }

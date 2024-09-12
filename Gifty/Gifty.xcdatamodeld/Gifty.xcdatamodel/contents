@@ -13,11 +13,11 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="status" optional="YES" attributeType="String"/>
         <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="gift" inverseEntity="Event"/>
-        <relationship name="person" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="gift" inverseEntity="Person"/>
+        <relationship name="giftee" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Giftee" inverseName="gift" inverseEntity="Giftee"/>
     </entity>
-    <entity name="Person" representedClassName="Person" syncable="YES">
+    <entity name="Giftee" representedClassName="Giftee" syncable="YES">
         <attribute name="firstname" optional="YES" attributeType="String"/>
         <attribute name="lastname" optional="YES" attributeType="String"/>
-        <relationship name="gift" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Gift" inverseName="person" inverseEntity="Gift"/>
+        <relationship name="gift" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Gift" inverseName="giftee" inverseEntity="Gift"/>
     </entity>
 </model>
