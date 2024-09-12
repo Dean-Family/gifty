@@ -19,6 +19,7 @@ struct EditGiftView: View {
     @Query(sort: \Event.date, order: .forward) private var events: [Event]
 
     @State private var showingStatusModal = false  // State for showing modal
+    @State private var priceInput: String = ""
 
     let statuses = ["Idea", "Planned", "Reserved", "Ordered", "Shipped", "Received", "Wrapped", "Delivered", "Given", "Opened", "Thanked", "Used", "Exchanged", "Returned", "Re-Gifted", "Expired", "Cancelled", "On Hold", "Pending", "Not Applicable"]
     
@@ -54,13 +55,17 @@ struct EditGiftView: View {
                 }
 
                 Section(header: Text("Price (in Dollars)")) {
-                    TextField("Price", text: Binding(
-                        get: { formatCentsToDollars(gift.cents ?? 0) },
-                        set: { gift.cents = convertDollarsToCents($0) }
-                    ))
-                    .keyboardType(.decimalPad)
+                    TextField("Price", text: $priceInput)
+                        .keyboardType(.decimalPad)
+                        .onChange(of: priceInput) { newValue in
+                            if newValue.isEmpty {
+                                gift.cents = nil
+                            } else {
+                                gift.cents = convertDollarsToCents(newValue)
+                            }
+                        }
                 }
-
+                
                 Section(header: Text("Item Description")) {
                     TextEditor(text: $gift.item_description.bound)
                         .frame(height: 100)
@@ -92,6 +97,10 @@ struct EditGiftView: View {
                     }
                 }
             }
+            .onAppear {
+                priceInput = formatCentsToDollars(gift.cents ?? 0)
+            }
+
             .navigationTitle("Edit Gift")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
