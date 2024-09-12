@@ -13,14 +13,21 @@ struct EventDetailView: View {
     @Environment(\.modelContext) private var viewContext
     @State private var showingEditEventView: Bool = false
     @State private var showingAddGiftView: Bool = false
+    @State private var refreshTrigger: Bool = false  // Trigger for view update
 
     var event: Event
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            Text("Event on \(event.date ?? Date(), formatter: dateFormatter)")
-                .font(.title2)
-                .padding()
+            if let eventDate = event.date {
+                Text("Event on \(eventDate, formatter: dateFormatter)")
+                    .font(.title2)
+                    .padding()
+            } else {
+                Text("Event on Unknown Date")
+                    .font(.title2)
+                    .padding()
+            }
 
             if let gifts = event.gifts, !gifts.isEmpty {
                 List {
@@ -81,6 +88,10 @@ struct EventDetailView: View {
                 }
             }
         }
+        .onAppear {
+            refreshTrigger.toggle()  // Trigger the view update
+        }
+        .id(refreshTrigger)  // Force a refresh of the list
         .sheet(isPresented: $showingEditEventView) {
             EditEventView(event: event)
                 .environment(\.modelContext, viewContext)
@@ -88,6 +99,9 @@ struct EventDetailView: View {
         .sheet(isPresented: $showingAddGiftView) {
             AddGiftView(event: event)
                 .environment(\.modelContext, viewContext)
+                .onDisappear {
+                    refreshTrigger.toggle()  // Trigger a refresh when AddGiftView is dismissed
+                }
         }
     }
 

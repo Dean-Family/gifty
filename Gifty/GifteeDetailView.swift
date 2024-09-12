@@ -12,6 +12,7 @@ struct GifteeDetailView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var showingEditGifteeView: Bool = false
     @State private var showingAddGiftView: Bool = false
+    @State private var refreshTrigger: Bool = false  // Trigger for view refresh
 
     @Bindable var giftee: Giftee
 
@@ -76,13 +77,21 @@ struct GifteeDetailView: View {
                 }
             }
         }
+        .onAppear {
+            refreshTrigger.toggle()  // Refresh view on appearance
+        }
+        .id(refreshTrigger)  // Force a refresh using .id()
         .sheet(isPresented: $showingEditGifteeView) {
             EditGifteeView(giftee: giftee)
         }
         .sheet(isPresented: $showingAddGiftView) {
             AddGiftView(giftee: giftee)
+                .onDisappear {
+                    refreshTrigger.toggle()  // Refresh when AddGiftView is dismissed
+                }
         }
     }
+
     private func fullName(for giftee: Giftee) -> String {
         let firstName = giftee.firstname ?? "Unknown"
         let lastName = giftee.lastname ?? "Unknown"
