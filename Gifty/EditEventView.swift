@@ -24,6 +24,10 @@ struct EditEventView: View {
                 Section(header: Text("Event Date")) {
                     DatePicker("Event Date", selection: $event.date.boundDate, displayedComponents: .date)
                 }
+                Section(header: Text("Event Description")) {
+                    TextEditor(text: $event.event_description.bound)
+                        .frame(height: 100)
+                }
             }
             .navigationTitle("Edit Event")
             .navigationBarTitleDisplayMode(.inline)

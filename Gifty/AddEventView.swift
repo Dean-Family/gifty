@@ -16,6 +16,7 @@ struct AddEventView: View {
 
     @State private var eventName: String = ""
     @State private var eventDate: Date = Date()
+    @State private var eventDescription: String = ""
 
     #if os(iOS)
     @State private var selectedContact: CNContact?
@@ -49,6 +50,11 @@ struct AddEventView: View {
 
             DatePicker("Event Date", selection: $eventDate, displayedComponents: [.date])
                 .padding()
+                TextEditor(text: $eventDescription)
+                    .frame(height: 100)
+                    .padding()
+                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
+                    .autocapitalization(.sentences)
 
             #if os(iOS)
             Button("Get Birthday From Contacts") {

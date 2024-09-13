@@ -19,14 +19,17 @@ struct EventDetailView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
+            if let eventName = event.name {
+                Text(eventName)
+                    .font(.title3)
+            }
             if let eventDate = event.date {
                 Text("Event on \(eventDate, formatter: dateFormatter)")
-                    .font(.title2)
-                    .padding()
             } else {
                 Text("Event on Unknown Date")
-                    .font(.title2)
-                    .padding()
+            }
+            if let eventDescription = event.event_description {
+                Text(eventDescription)
             }
 
             if let gifts = event.gifts, !gifts.isEmpty {
@@ -72,7 +75,7 @@ struct EventDetailView: View {
             Spacer()
         }
         .padding()
-        .navigationTitle(event.name ?? "Event")
+        .navigationTitle("Events")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
