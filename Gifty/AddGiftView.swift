@@ -132,11 +132,13 @@ struct AddGiftView: View {
         newGift.location = location
         newGift.cents = convertDollarsToCents(priceInDollars)
         newGift.item_description = itemDescription
-        
-        // Ensure the link has "http" or "https" scheme
+
+        // Ensure the link has "http" or "https" scheme if it's not empty
         var sanitizedLink = link.trimmingCharacters(in: .whitespacesAndNewlines)
-        if !sanitizedLink.lowercased().hasPrefix("http://") && !sanitizedLink.lowercased().hasPrefix("https://") {
-            sanitizedLink = "https://\(sanitizedLink)"
+        if !sanitizedLink.isEmpty {
+            if !sanitizedLink.lowercased().hasPrefix("http://") && !sanitizedLink.lowercased().hasPrefix("https://") {
+                sanitizedLink = "https://\(sanitizedLink)"
+            }
         }
         newGift.link = sanitizedLink
         
@@ -149,6 +151,7 @@ struct AddGiftView: View {
             presentationMode.wrappedValue.dismiss()
         } catch {
             // handle the Core Data error
+            print("Error saving gift: \(error.localizedDescription)")
         }
     }
 
