@@ -50,10 +50,28 @@ struct EditGifteeView: View {
 }
 
 @available(iOS 17, *)
-struct EditGifteeView_Previews: PreviewProvider {
-    static var previews: some View {
-        let previewGiftee = Giftee(firstname: "John", lastname: "Doe")
-        return EditGifteeView(giftee: previewGiftee)
+@MainActor
+let previewContainer: ModelContainer = {
+    do {
+        let container = try ModelContainer(for: Giftee.self, configurations: .init(isStoredInMemoryOnly: true))
+        let sampleGiftee = Giftee(firstname: "Sample", lastname: "User")
+        container.mainContext.insert(sampleGiftee)
+        return container
+    } catch {
+        fatalError("Failed to create container")
+    }
+}()
+
+@available(iOS 17, *)
+#Preview {
+    do {
+        let giftees = try previewContainer.mainContext.fetch(FetchDescriptor<Giftee>())
+        let sampleGiftee = giftees.first ?? Giftee(firstname: "", lastname: "")
+        
+        return EditGifteeView(giftee: sampleGiftee)
+            .modelContainer(previewContainer)
+    } catch {
+        fatalError("Error fetching giftees: \(error)")
     }
 }
 

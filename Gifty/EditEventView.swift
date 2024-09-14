@@ -60,3 +60,30 @@ extension Optional where Wrapped == Date {
         set { self = newValue }
     }
 }
+
+@available(iOS 17, *)
+@MainActor
+let eventPreviewContainer: ModelContainer = {
+    do {
+        let container = try ModelContainer(for: Event.self, configurations: .init(isStoredInMemoryOnly: true))
+        let sampleEvent = Event(date: Date(), name: "Birthday Party", event_description: "A fun gathering with friends.")
+        container.mainContext.insert(sampleEvent)
+        return container
+    } catch {
+        fatalError("Failed to create container for Event")
+    }
+}()
+
+@available(iOS 17, *)
+#Preview {
+    do {
+        let events = try eventPreviewContainer.mainContext.fetch(FetchDescriptor<Event>())
+        let sampleEvent = events.first ?? Event(date: Date(), name: "", event_description: "")
+        
+        return EditEventView(event: sampleEvent)
+            .modelContainer(eventPreviewContainer)
+    } catch {
+        fatalError("Error fetching events: \(error)")
+    }
+}
+

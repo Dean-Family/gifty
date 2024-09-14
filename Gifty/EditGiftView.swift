@@ -155,3 +155,58 @@ private let dateFormatter: DateFormatter = {
     formatter.dateStyle = .short
     return formatter
 }()
+
+@available(iOS 17, *)
+@MainActor
+let previewGiftContainer: ModelContainer = {
+    do {
+        let container = try ModelContainer(for: Giftee.self, Event.self, Gift.self, configurations: .init(isStoredInMemoryOnly: true))
+
+        // Create sample giftees
+        let sampleGiftee1 = Giftee(firstname: "John", lastname: "Doe")
+        let sampleGiftee2 = Giftee(firstname: "Jane", lastname: "Smith")
+
+        // Create sample events
+        let sampleEvent1 = Event(date: Date(), name: "Birthday Party", event_description: "A fun gathering.")
+        let sampleEvent2 = Event(date: Date(), name: "Wedding", event_description: "A beautiful ceremony.")
+
+        // Insert giftees and events into the context
+        container.mainContext.insert(sampleGiftee1)
+        container.mainContext.insert(sampleGiftee2)
+        container.mainContext.insert(sampleEvent1)
+        container.mainContext.insert(sampleEvent2)
+
+        // Create a sample gift
+        let sampleGift = Gift(
+            name: "Watch",
+            cents: 12999,  // $129.99
+            item_description: "A fancy wristwatch.",
+            link: "https://example.com/watch",
+            location: "Amazon",
+            status: "Ordered",
+            event: sampleEvent1,
+            giftee: sampleGiftee1
+        )
+
+        // Insert the sample gift into the context
+        container.mainContext.insert(sampleGift)
+
+        return container
+    } catch {
+        fatalError("Failed to create container")
+    }
+}()
+
+@available(iOS 17, *)
+#Preview {
+    do {
+        // Fetch the sample gift
+        let gifts = try previewGiftContainer.mainContext.fetch(FetchDescriptor<Gift>())
+        let sampleGift = gifts.first ?? Gift(name: "", cents: 0, item_description: "", link: "", location: "", status: "Idea", event: nil, giftee: nil)
+        
+        return EditGiftView(gift: sampleGift)
+            .modelContainer(previewGiftContainer)
+    } catch {
+        fatalError("Error fetching gifts: \(error)")
+    }
+}
