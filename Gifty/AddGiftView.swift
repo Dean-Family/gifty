@@ -132,7 +132,14 @@ struct AddGiftView: View {
         newGift.location = location
         newGift.cents = convertDollarsToCents(priceInDollars)
         newGift.item_description = itemDescription
-        newGift.link = link
+        
+        // Ensure the link has "http" or "https" scheme
+        var sanitizedLink = link.trimmingCharacters(in: .whitespacesAndNewlines)
+        if !sanitizedLink.lowercased().hasPrefix("http://") && !sanitizedLink.lowercased().hasPrefix("https://") {
+            sanitizedLink = "https://\(sanitizedLink)"
+        }
+        newGift.link = sanitizedLink
+        
         newGift.status = status
 
         modelContext.insert(newGift)

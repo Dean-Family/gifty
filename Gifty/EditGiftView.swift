@@ -111,6 +111,13 @@ struct EditGiftView: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
+                        // Ensure the link has "http" or "https" scheme
+                        if let inputLink = gift.link?.trimmingCharacters(in: .whitespacesAndNewlines), !inputLink.isEmpty {
+                            if !inputLink.lowercased().hasPrefix("http://") && !inputLink.lowercased().hasPrefix("https://") {
+                                gift.link = "https://\(inputLink)"
+                            }
+                        }
+                        
                         do {
                             try modelContext.save()
                             presentationMode.wrappedValue.dismiss()
@@ -119,6 +126,7 @@ struct EditGiftView: View {
                         }
                     }
                 }
+
             }
         }
     }
