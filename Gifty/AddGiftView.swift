@@ -7,7 +7,6 @@
 
 import SwiftUI
 import SwiftData
-import ContactsUI
 
 @available(iOS 17, *)
 struct AddGiftView: View {
@@ -24,106 +23,100 @@ struct AddGiftView: View {
     @State private var priceInDollars: String = ""
     @State private var itemDescription: String = ""
     @State private var link: String = ""
-    @State private var status: String = "Idea"
+    @State private var status: String = ""
     @State private var showingStatusModal = false
 
     let statuses = ["Idea", "Planned", "Reserved", "Ordered", "Shipped", "Received", "Wrapped", "Delivered", "Given", "Opened", "Thanked", "Used", "Exchanged", "Returned", "Re-Gifted", "Expired", "Cancelled", "On Hold", "Pending", "Not Applicable"]
-
+    
     init(giftee: Giftee? = nil, event: Event? = nil) {
-        _selectedGiftee = State(initialValue: giftee)
-        _selectedEvent = State(initialValue: event)
+            _selectedGiftee = State(initialValue: giftee)
+            _selectedEvent = State(initialValue: event)
     }
     
     var body: some View {
-        #if os(iOS)
         NavigationView {
-            formContent
-                .navigationBarTitle("Add Gift", displayMode: .inline)
-                .toolbar {
-                    ToolbarItem(placement: .cancellationAction) {
-                        Button("Cancel") {
-                            presentationMode.wrappedValue.dismiss()
+            Form {
+                Section(header: Text("Gift Name")) {
+                    TextField("Gift Name", text: $giftName)
+                }
+                
+                Section(header: Text("Giftee")) {
+                    Picker("Select Giftee", selection: $selectedGiftee) {
+                        Text("None").tag(nil as Giftee?)
+                        ForEach(giftees, id: \.self) { giftee in
+                            Text("\(giftee.firstname ?? "") \(giftee.lastname ?? "")")
+                                .tag(giftee as Giftee?)
                         }
                     }
-                    ToolbarItem(placement: .confirmationAction) {
-                        Button("Save") {
-                            addGift()
+                }
+                
+                Section(header: Text("Event")) {
+                    Picker("Select Event", selection: $selectedEvent) {
+                        Text("None").tag(nil as Event?)
+                        ForEach(events, id: \.self) { event in
+                            Text("\(event.name ?? "Unknown Event") on \(event.date!, formatter: dateFormatter)")
+                                .tag(event as Event?)
                         }
                     }
                 }
-        }
-        #else
-        formContent
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-        #endif
-    }
-    
-    var formContent: some View {
-        ScrollView {
-            VStack(spacing: 20) {
-                TextField("Gift Name", text: $giftName)
-                    .padding()
-                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
-                
-                Picker("Select Giftee", selection: $selectedGiftee) {
-                    Text("None").tag(nil as Giftee?)
-                    ForEach(giftees, id: \.self) { giftee in
-                        Text("\(giftee.firstname ?? "Unknown") \(giftee.lastname ?? "")")
-                            .tag(giftee as Giftee?)
-                    }
-                }
-                .pickerStyle(MenuPickerStyle())
 
-                Picker("Select Event", selection: $selectedEvent) {
-                    Text("None").tag(nil as Event?)
-                    ForEach(events, id: \.self) { event in
-                        Text(event.name ?? "Unknown")
-                            .tag(event as Event?)
-                    }
+                Section(header: Text("Where to purchase")) {
+                    TextField("Location", text: $location)
                 }
-                .pickerStyle(MenuPickerStyle())
-                
-                TextField("Where to purchase", text: $location)
-                    .padding()
-                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
-                
-                TextField("Price (in Dollars)", text: $priceInDollars)
-                    .keyboardType(.decimalPad)
-                    .padding()
-                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
-                
-                TextEditor(text: $itemDescription)
-                    .frame(height: 100)
-                    .padding()
-                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
-                    .autocapitalization(.sentences)
-                
-                TextField("Link", text: $link)
-                    .keyboardType(.URL)
-                    .autocapitalization(.none)
-                    .padding()
-                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
 
-                Button(action: {
-                    showingStatusModal = true
-                }) {
-                    HStack {
-                        Text("Status")
-                        Spacer()
-                        Text(status)
-                            .foregroundColor(.gray)
-                    }
+                Section(header: Text("Price (in Dollars)")) {
+                    TextField("Price", text: $priceInDollars)
+                        .keyboardType(.decimalPad)
                 }
-                .padding()
-                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))
-                .sheet(isPresented: $showingStatusModal) {
-                    StatusSelectionModal(selectedStatus: $status, isPresented: $showingStatusModal, statuses: statuses)
+                
+                Section(header: Text("Item Description")) {
+                    TextEditor(text: $itemDescription)
+                        .frame(height: 100)
+                }
+
+                Section(header: Text("Link")) {
+                    TextField("Link", text: $link)
+                        .keyboardType(.URL)
+                        .autocapitalization(.none)
+                }
+
+                Section(header: Text("Status")) {
+                    Button(action: {
+                        showingStatusModal = true
+                    }) {
+                        HStack {
+                            Text("Status")
+                            Spacer()
+                                Text(status)
+                                    .foregroundColor(.gray)
+                        }
+                    }
+                    .sheet(isPresented: $showingStatusModal) {
+                        StatusSelectionModal(
+                            selectedStatus: $status,
+                            isPresented: $showingStatusModal,
+                            statuses: statuses
+                        )
+                    }
                 }
             }
-            .padding()
+            .navigationTitle("Add Gift")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Save") {
+                        addGift()
+                    }
+                }
+            }
         }
     }
-    
+
     private func addGift() {
         let newGift = Gift()
         newGift.name = giftName
@@ -150,7 +143,6 @@ struct AddGiftView: View {
             try modelContext.save()
             presentationMode.wrappedValue.dismiss()
         } catch {
-            // handle the Core Data error
             print("Error saving gift: \(error.localizedDescription)")
         }
     }
@@ -163,3 +155,16 @@ struct AddGiftView: View {
         return 0
     }
 }
+
+private let dateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .short
+    return formatter
+}()
+
+@available(iOS 17, *)
+#Preview {
+    AddGiftView()
+        .modelContainer(previewGiftContainer)
+}
+

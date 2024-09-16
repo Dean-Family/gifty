@@ -50,7 +50,7 @@ struct EditGiftView: View {
                     }
                 }
 
-                Section(header: Text("Location")) {
+                Section(header: Text("Where to Purchase")) {
                     TextField("Location", text: $gift.location.bound)
                 }
 
@@ -182,7 +182,7 @@ let previewGiftContainer: ModelContainer = {
             cents: 12999,  // $129.99
             item_description: "A fancy wristwatch.",
             link: "https://example.com/watch",
-            location: "Amazon",
+            location: "Macys",
             status: "Ordered",
             event: sampleEvent1,
             giftee: sampleGiftee1
