@@ -20,7 +20,10 @@ import SwiftData
     var event: Event?
     var giftee: Giftee?
     
-    public init(name: String? = nil, cents: Int64? = 0, item_description: String? = nil, link: String? = nil, location: String? = nil, status: String? = nil, event: Event? = nil, giftee: Giftee? = nil) {
+    // Add a property to store photos as an array of Data
+    var photos: [Data] = []
+    
+    public init(name: String? = nil, cents: Int64? = 0, item_description: String? = nil, link: String? = nil, location: String? = nil, status: String? = nil, event: Event? = nil, giftee: Giftee? = nil, photos: [Data] = []) {
         self.name = name
         self.cents = cents
         self.item_description = item_description
@@ -29,5 +32,18 @@ import SwiftData
         self.status = status
         self.event = event
         self.giftee = giftee
+        self.photos = photos
+    }
+    
+    // Method to add a new photo
+    func addPhoto(_ photo: Data) {
+        photos.append(photo)
+    }
+    
+    // Method to remove a photo at a specific index
+    func removePhoto(at index: Int) {
+        if photos.indices.contains(index) {
+            photos.remove(at: index)
+        }
     }
 }

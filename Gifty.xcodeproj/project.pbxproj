@@ -23,6 +23,7 @@
 		2B404BD72C8669C400511767 /* Giftee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B404BD42C8669C400511767 /* Giftee.swift */; };
 		2B5A1CB82ADFA6A2005BC16E /* AddGiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A1CB72ADFA6A2005BC16E /* AddGiftView.swift */; };
 		2B5A1CBA2ADFB523005BC16E /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A1CB92ADFB523005BC16E /* Documentation.docc */; };
+		2BCECB162C97FD2D00DF5CDB /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCECB152C97FD2D00DF5CDB /* ImagePicker.swift */; };
 		2BD5579C2A5A9635000DB9F8 /* GiftyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5579B2A5A9635000DB9F8 /* GiftyApp.swift */; };
 		2BD5579E2A5A9635000DB9F8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5579D2A5A9635000DB9F8 /* Persistence.swift */; };
 		2BD557A12A5A9635000DB9F8 /* Gifty.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5579F2A5A9635000DB9F8 /* Gifty.xcdatamodeld */; };
@@ -69,6 +70,7 @@
 		2B404BD42C8669C400511767 /* Giftee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Giftee.swift; path = Gifty/Giftee.swift; sourceTree = "<group>"; };
 		2B5A1CB72ADFA6A2005BC16E /* AddGiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGiftView.swift; sourceTree = "<group>"; };
 		2B5A1CB92ADFB523005BC16E /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
+		2BCECB152C97FD2D00DF5CDB /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		2BD557982A5A9635000DB9F8 /* Gifty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gifty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BD5579B2A5A9635000DB9F8 /* GiftyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftyApp.swift; sourceTree = "<group>"; };
 		2BD5579D2A5A9635000DB9F8 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				2BD557A22A5A9635000DB9F8 /* ContentView.swift */,
 				2B076F152C8199EE004CDEAD /* GiftDetailView.swift */,
 				2B076F172C819A21004CDEAD /* EditGiftView.swift */,
+				2BCECB152C97FD2D00DF5CDB /* ImagePicker.swift */,
 				2BD557A42A5A9636000DB9F8 /* Assets.xcassets */,
 				2BD557A62A5A9636000DB9F8 /* Gifty.entitlements */,
 				2BD5579F2A5A9635000DB9F8 /* Gifty.xcdatamodeld */,
@@ -323,6 +326,7 @@
 				2BE705A82C8283C40028B7F0 /* StatusSelectionModal.swift in Sources */,
 				2B076F182C819A21004CDEAD /* EditGiftView.swift in Sources */,
 				2B404BD52C8669C400511767 /* Event.swift in Sources */,
+				2BCECB162C97FD2D00DF5CDB /* ImagePicker.swift in Sources */,
 				2B076F162C8199EE004CDEAD /* GiftDetailView.swift in Sources */,
 				2B5A1CBA2ADFB523005BC16E /* Documentation.docc in Sources */,
 				2BD557A12A5A9635000DB9F8 /* Gifty.xcdatamodeld in Sources */,
