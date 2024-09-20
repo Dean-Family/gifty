@@ -132,3 +132,46 @@ private let dateFormatter: DateFormatter = {
     formatter.dateStyle = .medium
     return formatter
 }()
+
+// Preview Setup
+@available(iOS 17, *)
+struct GifteeDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        GifteeDetailView(giftee: previewGiftee)
+            .modelContainer(previewGifteeContainer) // Add a mock model container for the preview
+    }
+}
+
+@available(iOS 17, *)
+let previewGiftee: Giftee = {
+    // Create a sample giftee for the preview
+    let sampleGiftee = Giftee(
+        firstname: "John",
+        lastname: "Doe"
+    )
+
+    // Create some sample gifts associated with the giftee
+    let sampleGift1 = Gift(name: "Sample Gift 1", cents: 1000, item_description: "A small gift.")
+    let sampleGift2 = Gift(name: "Sample Gift 2", cents: 5000, item_description: "A larger gift.")
+
+    // Associate the gifts with the giftee
+    sampleGiftee.gifts = [sampleGift1, sampleGift2]
+
+    return sampleGiftee
+}()
+
+@available(iOS 17, *)
+@MainActor
+let previewGifteeContainer: ModelContainer = {
+    do {
+        // Initialize the container with all required models for preview
+        let container = try ModelContainer(for: Giftee.self, Gift.self, Event.self, configurations: .init(isStoredInMemoryOnly: true))
+
+        // Insert the sample giftee into the container
+        container.mainContext.insert(previewGiftee)
+
+        return container
+    } catch {
+        fatalError("Failed to create preview model container: \(error)")
+    }
+}()

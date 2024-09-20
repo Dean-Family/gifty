@@ -32,6 +32,7 @@ struct EventDetailView: View {
                 Text(eventDescription)
             }
 
+            // Safely handle the gifts relationship
             if let gifts = event.gifts, !gifts.isEmpty {
                 List {
                     Section(header: Text("Gifts").font(.headline)) {
@@ -124,4 +125,48 @@ private let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .medium
     return formatter
+}()
+
+// Preview Setup
+@available(iOS 17, *)
+struct EventDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        EventDetailView(event: previewEvent)
+            .modelContainer(previewEventContainer) // Add a mock model container for the preview
+    }
+}
+
+@available(iOS 17, *)
+let previewEvent: Event = {
+    // Create a sample event with some details for the preview
+    let sampleEvent = Event(
+        date: Date(),
+        name: "Birthday Party",
+        event_description: "A fun gathering with friends."
+    )
+
+    // Create some sample gifts and associate them with the event
+    let sampleGift1 = Gift(name: "Sample Gift 1", cents: 2500, item_description: "A special gift.")
+    let sampleGift2 = Gift(name: "Sample Gift 2", cents: 5000, item_description: "Another special gift.")
+
+    // Assign the gifts to the event
+    sampleEvent.gifts = [sampleGift1, sampleGift2]
+    
+    return sampleEvent
+}()
+
+@available(iOS 17, *)
+@MainActor
+let previewEventContainer: ModelContainer = {
+    do {
+        // Initialize the container with all required models for preview
+        let container = try ModelContainer(for: Event.self, Gift.self, Giftee.self, configurations: .init(isStoredInMemoryOnly: true))
+
+        // Insert the sample data into the container
+        container.mainContext.insert(previewEvent)
+
+        return container
+    } catch {
+        fatalError("Failed to create preview model container: \(error)")
+    }
 }()

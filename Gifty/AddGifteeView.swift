@@ -105,3 +105,11 @@ struct ContactPickerView: UIViewControllerRepresentable {
         }
     }
 }
+
+@available(iOS 17, *)
+struct AddGifteeView_Previews: PreviewProvider {
+    static var previews: some View {
+        AddGifteeView()
+            .modelContainer(for: [Giftee.self]) // Pass the container for the Giftee model
+    }
+}

@@ -13,17 +13,20 @@ import SwiftData
 struct GiftyApp: App {
     let modelContainer: ModelContainer
 
-        init() {
-            do {
-                modelContainer = try ModelContainer(for: Gift.self, Giftee.self, Event.self)
-            } catch {
-                fatalError("Could not initialize ModelContainer: \(error)")
-            }
+    init() {
+        do {
+            // Initialize the ModelContainer for your models
+            modelContainer = try ModelContainer(for: Gift.self, Giftee.self, Event.self)
+        } catch {
+            fatalError("Could not initialize ModelContainer: \(error)")
         }
+    }
+
     var body: some Scene {
         WindowGroup {
+            // Pass the initialized modelContainer to the view
             MainView()
+                .modelContainer(modelContainer) // Apply the initialized modelContainer here
         }
-        .modelContainer(for: [Gift.self, Giftee.self, Event.self])
     }
 }
