@@ -25,7 +25,6 @@
 		2B5A1CBA2ADFB523005BC16E /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A1CB92ADFB523005BC16E /* Documentation.docc */; };
 		2BCECB162C97FD2D00DF5CDB /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCECB152C97FD2D00DF5CDB /* ImagePicker.swift */; };
 		2BD5579C2A5A9635000DB9F8 /* GiftyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5579B2A5A9635000DB9F8 /* GiftyApp.swift */; };
-		2BD5579E2A5A9635000DB9F8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5579D2A5A9635000DB9F8 /* Persistence.swift */; };
 		2BD557A12A5A9635000DB9F8 /* Gifty.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5579F2A5A9635000DB9F8 /* Gifty.xcdatamodeld */; };
 		2BD557A32A5A9635000DB9F8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD557A22A5A9635000DB9F8 /* ContentView.swift */; };
 		2BD557A52A5A9636000DB9F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BD557A42A5A9636000DB9F8 /* Assets.xcassets */; };
@@ -73,7 +72,6 @@
 		2BCECB152C97FD2D00DF5CDB /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		2BD557982A5A9635000DB9F8 /* Gifty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gifty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BD5579B2A5A9635000DB9F8 /* GiftyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftyApp.swift; sourceTree = "<group>"; };
-		2BD5579D2A5A9635000DB9F8 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		2BD557A02A5A9635000DB9F8 /* Gifty.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Gifty.xcdatamodel; sourceTree = "<group>"; };
 		2BD557A22A5A9635000DB9F8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2BD557A42A5A9636000DB9F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -112,6 +110,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2BCB24CD2C9E82CA00FA1456 /* Gifts */ = {
+			isa = PBXGroup;
+			children = (
+				2B5A1CB72ADFA6A2005BC16E /* AddGiftView.swift */,
+				2BD557A22A5A9635000DB9F8 /* ContentView.swift */,
+				2B076F152C8199EE004CDEAD /* GiftDetailView.swift */,
+				2B076F172C819A21004CDEAD /* EditGiftView.swift */,
+			);
+			path = Gifts;
+			sourceTree = "<group>";
+		};
+		2BCB24CE2C9E82E800FA1456 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				2B1B642B2B19BA190074FACE /* EventView.swift */,
+				2B1B642D2B19BCD30074FACE /* AddEventView.swift */,
+				2B076F192C819BC5004CDEAD /* EventDetailView.swift */,
+				2B076F1B2C819C11004CDEAD /* EditEventView.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		2BCB24CF2C9E830D00FA1456 /* Giftees */ = {
+			isa = PBXGroup;
+			children = (
+				2B1B642F2B19C6090074FACE /* GifteeView.swift */,
+				2B076F132C819174004CDEAD /* GifteeDetailView.swift */,
+				2B1B64312B19C9420074FACE /* AddGifteeView.swift */,
+				2B076F112C818C9B004CDEAD /* EditGifteeView.swift */,
+			);
+			path = Giftees;
+			sourceTree = "<group>";
+		};
+		2BCB24D02C9E831D00FA1456 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				2BCECB152C97FD2D00DF5CDB /* ImagePicker.swift */,
+				2BE705A72C8283C40028B7F0 /* StatusSelectionModal.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		2BD5578F2A5A9635000DB9F8 = {
 			isa = PBXGroup;
 			children = (
@@ -139,27 +179,16 @@
 		2BD5579A2A5A9635000DB9F8 /* Gifty */ = {
 			isa = PBXGroup;
 			children = (
+				2BCB24D02C9E831D00FA1456 /* Utils */,
+				2BCB24CF2C9E830D00FA1456 /* Giftees */,
+				2BCB24CE2C9E82E800FA1456 /* Events */,
+				2BCB24CD2C9E82CA00FA1456 /* Gifts */,
 				2BD5579B2A5A9635000DB9F8 /* GiftyApp.swift */,
-				2BD5579D2A5A9635000DB9F8 /* Persistence.swift */,
-				2BD557A22A5A9635000DB9F8 /* ContentView.swift */,
-				2B076F152C8199EE004CDEAD /* GiftDetailView.swift */,
-				2B076F172C819A21004CDEAD /* EditGiftView.swift */,
-				2BCECB152C97FD2D00DF5CDB /* ImagePicker.swift */,
+				2B26E4012AEA3E68005F5278 /* MainView.swift */,
 				2BD557A42A5A9636000DB9F8 /* Assets.xcassets */,
 				2BD557A62A5A9636000DB9F8 /* Gifty.entitlements */,
 				2BD5579F2A5A9635000DB9F8 /* Gifty.xcdatamodeld */,
 				2BD557A72A5A9636000DB9F8 /* Preview Content */,
-				2B5A1CB72ADFA6A2005BC16E /* AddGiftView.swift */,
-				2B26E4012AEA3E68005F5278 /* MainView.swift */,
-				2B1B642B2B19BA190074FACE /* EventView.swift */,
-				2B1B642D2B19BCD30074FACE /* AddEventView.swift */,
-				2B1B642F2B19C6090074FACE /* GifteeView.swift */,
-				2B076F132C819174004CDEAD /* GifteeDetailView.swift */,
-				2B1B64312B19C9420074FACE /* AddGifteeView.swift */,
-				2B076F112C818C9B004CDEAD /* EditGifteeView.swift */,
-				2B076F192C819BC5004CDEAD /* EventDetailView.swift */,
-				2B076F1B2C819C11004CDEAD /* EditEventView.swift */,
-				2BE705A72C8283C40028B7F0 /* StatusSelectionModal.swift */,
 			);
 			path = Gifty;
 			sourceTree = "<group>";
@@ -335,7 +364,6 @@
 				2B1B64322B19C9420074FACE /* AddGifteeView.swift in Sources */,
 				2B1B64302B19C6090074FACE /* GifteeView.swift in Sources */,
 				2BD557A32A5A9635000DB9F8 /* ContentView.swift in Sources */,
-				2BD5579E2A5A9635000DB9F8 /* Persistence.swift in Sources */,
 				2B5A1CB82ADFA6A2005BC16E /* AddGiftView.swift in Sources */,
 				2B1B642C2B19BA190074FACE /* EventView.swift in Sources */,
 				2B404BD72C8669C400511767 /* Giftee.swift in Sources */,
