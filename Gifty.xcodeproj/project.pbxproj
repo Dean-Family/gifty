@@ -24,6 +24,9 @@
 		2B5A1CB82ADFA6A2005BC16E /* AddGiftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A1CB72ADFA6A2005BC16E /* AddGiftView.swift */; };
 		2B5A1CBA2ADFB523005BC16E /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A1CB92ADFB523005BC16E /* Documentation.docc */; };
 		2BCECB162C97FD2D00DF5CDB /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCECB152C97FD2D00DF5CDB /* ImagePicker.swift */; };
+		2BCF63BB2CA13FF70030DB99 /* GiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCF63BA2CA13FF70030DB99 /* GiftTests.swift */; };
+		2BCF63BE2CA140570030DB99 /* GifteeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCF63BD2CA140570030DB99 /* GifteeTests.swift */; };
+		2BCF63C02CA140730030DB99 /* EventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCF63BF2CA140730030DB99 /* EventTests.swift */; };
 		2BD5579C2A5A9635000DB9F8 /* GiftyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5579B2A5A9635000DB9F8 /* GiftyApp.swift */; };
 		2BD557A12A5A9635000DB9F8 /* Gifty.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2BD5579F2A5A9635000DB9F8 /* Gifty.xcdatamodeld */; };
 		2BD557A32A5A9635000DB9F8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD557A22A5A9635000DB9F8 /* ContentView.swift */; };
@@ -70,6 +73,9 @@
 		2B5A1CB72ADFA6A2005BC16E /* AddGiftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGiftView.swift; sourceTree = "<group>"; };
 		2B5A1CB92ADFB523005BC16E /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
 		2BCECB152C97FD2D00DF5CDB /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		2BCF63BA2CA13FF70030DB99 /* GiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftTests.swift; sourceTree = "<group>"; };
+		2BCF63BD2CA140570030DB99 /* GifteeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifteeTests.swift; sourceTree = "<group>"; };
+		2BCF63BF2CA140730030DB99 /* EventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTests.swift; sourceTree = "<group>"; };
 		2BD557982A5A9635000DB9F8 /* Gifty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gifty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BD5579B2A5A9635000DB9F8 /* GiftyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftyApp.swift; sourceTree = "<group>"; };
 		2BD557A02A5A9635000DB9F8 /* Gifty.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Gifty.xcdatamodel; sourceTree = "<group>"; };
@@ -152,6 +158,16 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		2BCF63B82CA13FDB0030DB99 /* DataTests */ = {
+			isa = PBXGroup;
+			children = (
+				2BCF63BA2CA13FF70030DB99 /* GiftTests.swift */,
+				2BCF63BD2CA140570030DB99 /* GifteeTests.swift */,
+				2BCF63BF2CA140730030DB99 /* EventTests.swift */,
+			);
+			path = DataTests;
+			sourceTree = "<group>";
+		};
 		2BD5578F2A5A9635000DB9F8 = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +220,7 @@
 		2BD557B12A5A9636000DB9F8 /* GiftyTests */ = {
 			isa = PBXGroup;
 			children = (
+				2BCF63B82CA13FDB0030DB99 /* DataTests */,
 				2BD557B22A5A9636000DB9F8 /* GiftyTests.swift */,
 			);
 			path = GiftyTests;
@@ -376,7 +393,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BCF63C02CA140730030DB99 /* EventTests.swift in Sources */,
 				2BD557B32A5A9636000DB9F8 /* GiftyTests.swift in Sources */,
+				2BCF63BE2CA140570030DB99 /* GifteeTests.swift in Sources */,
+				2BCF63BB2CA13FF70030DB99 /* GiftTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
