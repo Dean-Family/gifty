@@ -55,9 +55,8 @@ The primary purpose of Gifty is to help users keep track of gift ideas, purchase
 - Emphasis on user experience, ensuring that the interface is intuitive and polished.
 
 #### **10. Testing and Quality Assurance**
-- Current status: No unit tests written yet.
-- Plans to add unit and UI tests to ensure app stability and reliability.
-- Future testing will cover core functionality, including data synchronization and user interactions.
+- Current status: Some tests written.
+- Tests cover UI elements and data handling. 
 
 #### **11. Internationalization Plan**
 - Plans to support multiple languages to make the app accessible to a wider audience.
