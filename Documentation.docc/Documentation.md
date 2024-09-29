@@ -1,7 +1,7 @@
 ### **Gifty**
 
 #### **1. Introduction**
-**Gifty** is a cross-platform gift management application designed to simplify and enhance the experience of giving and receiving gifts. Built exclusively for iOS, with plans to extend to iPad and macOS, the application aims to provide seamless data synchronization using SwiftData. Users can start tracking a gift idea on their phone and fill in the details later on their laptop, ensuring a consistent and organized gifting process.
+**Gifty** is a gift management application designed to simplify and enhance the experience of giving and receiving gifts. Built exclusively for iOS, with plans to extend to iPad and macOS, the application aims to provide seamless data synchronization using SwiftData. Users can start tracking a gift idea on their phone and fill in the details later on their laptop, ensuring a consistent and organized gifting process.
 
 #### **2. Purpose**
 The primary purpose of Gifty is to help users keep track of gift ideas, purchases, and events in an intuitive and organized manner. It aims to make the gifting process more enjoyable and less stressful by providing a central place to manage all aspects of gift-giving.
