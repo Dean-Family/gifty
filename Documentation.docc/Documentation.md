@@ -76,6 +76,5 @@ The primary purpose of Gifty is to help users keep track of gift ideas, purchase
   - Implement new features and improvements based on user needs.
 
 #### **13. Challenges and Considerations**
-- Addressing technical challenges such as broken previews and missing previews in detail views.
 - Ensuring the app is modular and maintainable, despite the current "one view file per view" approach.
 - Balancing the goal of creating an app with Apple-like polish while maintaining a streamlined development process.
